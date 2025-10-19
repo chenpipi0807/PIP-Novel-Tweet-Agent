@@ -49,7 +49,7 @@
 
 1. **克隆仓库**
 ```bash
-git clone <repository-url>
+git clone https://github.com/chenpipi0807/PIP-Novel-Tweet-Agent.git
 cd PIP_Agent
 ```
 
@@ -243,7 +243,7 @@ MIT License
 
 - [AnimagineXL](https://huggingface.co/cagliostrolab/animagine-xl-4.0) - 高质量动漫风格图像生成
 - [DMD2](https://huggingface.co/tianweiy/DMD2) - 快速采样加速
-- [Edge TTS](https://github.com/rany2/edge-tts) - 免费高质量 TTS
+- [Index TTS](https://github.com/index-tts/index-tts) - 免费高质量 TTS
 - [Diffusers](https://github.com/huggingface/diffusers) - Stable Diffusion 推理库
 
 ## 📧 联系方式
