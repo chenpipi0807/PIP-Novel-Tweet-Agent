@@ -1,0 +1,426 @@
+{
+  "story_metadata": {
+    "title": "日炎皇朝",
+    "genre": "玄幻",
+    "style": "古风玄幻"
+  },
+  "global_settings": {
+    "characters": [
+      {
+        "name": "顾衡",
+        "appearance": "young man, black short hair, sharp eyes, calm demeanor",
+        "clothing": "simple gray robe, traditional healer attire, cloth shoes"
+      },
+      {
+        "name": "白菲儿",
+        "appearance": "young woman, elegant appearance, cold temperament, pale complexion",
+        "clothing": "luxurious white dress, traditional noble attire, delicate shoes"
+      }
+    ],
+    "art_style": "manga style",
+    "color_tone": "mystical",
+    "lighting": "soft"
+  },
+  "scene_prompts": [
+    {
+      "prompt": "manga style, mystical ambiance of ancient city, wide shot, 'Ri Yan Empire, Qing Mu City', traditional chinese architecture, cloudy sky, soft lighting, mysterious atmosphere, masterpiece, best quality, highly detailed, anime",
+      "index": 1
+    },
+    {
+      "prompt": "manga style, dramatic storm over the city, wide shot, young man, black short hair, sharp eyes, calm demeanor, simple gray robe, traditional healer attire, cloth shoes observing the torrential rain and thunderstorm from indoors, intense lightning, pouring rain, mystical, atmospheric, soft lighting, masterpiece, best quality, highly detailed, anime",
+      "index": 2
+    },
+    {
+      "prompt": "manga style, a healer's anxiety amidst a storm, medium shot, young man, black short hair, sharp eyes, calm demeanor, simple gray robe, traditional healer attire, cloth shoes standing at the entrance of his clinic with a worried expression, listening to raindrops hitting the eaves, soft lighting, mysterious mood, traditional clinic setting, masterpiece, best quality, highly detailed, anime",
+      "index": 3
+    },
+    {
+      "prompt": "manga style, a common man's helplessness in the face of nature's power, medium shot, young man, black short hair, sharp eyes, calm demeanor, simple gray robe, traditional healer attire, cloth shoes contemplating the unfavorable weather for patients, soft lighting, mystical ambiance, traditional clinic interior, masterpiece, best quality, highly detailed, anime",
+      "index": 4
+    },
+    {
+      "prompt": "manga style, a traveler's reflection on his journey, medium shot, young man, black short hair, sharp eyes, calm demeanor, simple gray robe, traditional healer attire, cloth shoes reminiscing about his life in the 'Xuan Tian Jie' for twenty years, soft lighting, mysterious mood, traditional healer's study, masterpiece, best quality, highly detailed, anime",
+      "index": 5
+    },
+    {
+      "prompt": "manga style, a world where the strong rule, wide shot, mystical atmosphere, soft lighting, ancient martial world with towering mountains and floating islands, dawn mist, mysterious, atmospheric, masterpiece, best quality, highly detailed, anime",
+      "index": 6
+    },
+    {
+      "prompt": "manga style, a young man's dream of becoming a cultivator, medium shot, young man, black short hair, sharp eyes, calm demeanor, simple gray robe, traditional healer attire, cloth shoes standing alone with a disappointed expression, mystical forest background, soft lighting, contemplative mood, traditional healer attire, masterpiece, best quality, highly detailed, anime",
+      "index": 7
+    },
+    {
+      "prompt": "manga style, a scene of mockery, close-up shot, young man, black short hair, sharp eyes, calm demeanor, simple gray robe, traditional healer attire, cloth shoes being called a 'pure waste' by others, traditional town square, soft lighting, tense atmosphere, simple gray robe, masterpiece, best quality, highly detailed, anime",
+      "index": 8
+    },
+    {
+      "prompt": "manga style, a young man with a unique system, medium shot, young man, black short hair, sharp eyes, calm demeanor, simple gray robe, traditional healer attire, cloth shoes exploring his system's interface with curiosity, traditional healer attire, soft lighting, peaceful study room, mystical, atmospheric, masterpiece, best quality, highly detailed, anime",
+      "index": 9
+    },
+    {
+      "prompt": "manga style, a bored healer using his system, close-up shot, young man, black short hair, sharp eyes, calm demeanor, simple gray robe, traditional healer attire, cloth shoes yawning and tapping on a mystical interface, simple gray robe, soft lighting, traditional clinic interior, peaceful, ethereal, masterpiece, best quality, highly detailed, anime",
+      "index": 10
+    },
+    {
+      "prompt": "manga style, mysterious atmosphere, soft lighting, young man with black short hair and sharp eyes, calm demeanor, simple gray robe, traditional healer attire, cloth shoes, young man, black short hair, sharp eyes, calm demeanor, simple gray robe, traditional healer attire, cloth shoes, standing in a traditional study room, looking at a mystical panel with a serious expression, early morning, ethereal, masterpiece, best quality, highly detailed, anime",
+      "index": 11
+    },
+    {
+      "prompt": "manga style, mysterious atmosphere, soft lighting, young man with black short hair and sharp eyes, calm demeanor, simple gray robe, traditional healer attire, cloth shoes, young man, black short hair, sharp eyes, calm demeanor, simple gray robe, traditional healer attire, cloth shoes, in a traditional study room, dismissing the importance of his cultivation status with a slight smirk, early morning, ethereal, masterpiece, best quality, highly detailed, anime",
+      "index": 12
+    },
+    {
+      "prompt": "manga style, mysterious atmosphere, soft lighting, young man with black short hair and sharp eyes, calm demeanor, simple gray robe, traditional healer attire, cloth shoes, young man, black short hair, sharp eyes, calm demeanor, simple gray robe, traditional healer attire, cloth shoes, pulling down a mystical interface in a traditional study room, indifferent to the unhelpful skills listed, early morning, ethereal, masterpiece, best quality, highly detailed, anime",
+      "index": 13
+    },
+    {
+      "prompt": "manga style, mysterious atmosphere, soft lighting, young man with black short hair and sharp eyes, calm demeanor, simple gray robe, traditional healer attire, cloth shoes, young man, black short hair, sharp eyes, calm demeanor, simple gray robe, traditional healer attire, cloth shoes, examining his unhelpful skills' proficiency levels on a mystical panel, traditional study room, early morning, ethereal, masterpiece, best quality, highly detailed, anime",
+      "index": 14
+    },
+    {
+      "prompt": "manga style, mysterious atmosphere, soft lighting, young man with black short hair and sharp eyes, calm demeanor, simple gray robe, traditional healer attire, cloth shoes, young man, black short hair, sharp eyes, calm demeanor, simple gray robe, traditional healer attire, cloth shoes, looking at a list of skills including painting, calligraphy, medicine, forging, fortune-telling, and 'body refining' on a mystical panel, traditional study room, early morning, ethereal, masterpiece, best quality, highly detailed, anime",
+      "index": 15
+    },
+    {
+      "prompt": "manga style, the pinnacle of mastery in various skills, wide shot, young man, black short hair, sharp eyes, calm demeanor, simple gray robe, traditional healer attire, cloth shoes standing in a mystical room with an expression of disbelief, young woman, elegant appearance, cold temperament, pale complexion, luxurious white dress, traditional noble attire, delicate shoes observing him from a distance with a cold demeanor, mysterious atmosphere, soft lighting, ethereal, masterpiece, best quality, highly detailed, anime",
+      "index": 16
+    },
+    {
+      "prompt": "manga style, a young man doubting the legitimacy of a system, close-up shot, young man, black short hair, sharp eyes, calm demeanor, simple gray robe, traditional healer attire, cloth shoes with a skeptical look on his face, young woman, elegant appearance, cold temperament, pale complexion, luxurious white dress, traditional noble attire, delicate shoes in the background showing indifference, traditional healer attire and noble dress, soft lighting, mystical, atmospheric, masterpiece, best quality, highly detailed, anime",
+      "index": 17
+    },
+    {
+      "prompt": "manga style, the prerequisite for 'mastery' is cultivation, medium shot, young man, black short hair, sharp eyes, calm demeanor, simple gray robe, traditional healer attire, cloth shoes explaining with a calm demeanor, young woman, elegant appearance, cold temperament, pale complexion, luxurious white dress, traditional noble attire, delicate shoes listening with a distant gaze, traditional attire, soft lighting, mystical, intellectual atmosphere, masterpiece, best quality, highly detailed, anime",
+      "index": 18
+    },
+    {
+      "prompt": "manga style, the art of cultivation through painting and calligraphy, two shot, young man, black short hair, sharp eyes, calm demeanor, simple gray robe, traditional healer attire, cloth shoes illustrating with a brush in hand, young woman, elegant appearance, cold temperament, pale complexion, luxurious white dress, traditional noble attire, delicate shoes watching with a pale complexion, traditional noble attire, soft lighting, mystical, intense, masterpiece, best quality, highly detailed, anime",
+      "index": 19
+    },
+    {
+      "prompt": "manga style, the unattainable mastery for mortals, wide shot, young man, black short hair, sharp eyes, calm demeanor, simple gray robe, traditional healer attire, cloth shoes and young woman, elegant appearance, cold temperament, pale complexion, luxurious white dress, traditional noble attire, delicate shoes in a traditional setting, young man, black short hair, sharp eyes, calm demeanor, simple gray robe, traditional healer attire, cloth shoes with a simple gray robe and young woman, elegant appearance, cold temperament, pale complexion, luxurious white dress, traditional noble attire, delicate shoes in a luxurious white dress, soft lighting, mystical, distant, masterpiece, best quality, highly detailed, anime",
+      "index": 20
+    },
+    {
+      "prompt": "manga style, mystical atmosphere, soft lighting, young man, black short hair, sharp eyes, calm demeanor, simple gray robe, traditional healer attire, cloth shoes explaining the impossibility of non-spiritual practitioners achieving certain feats, young woman, elegant appearance, cold temperament, pale complexion, luxurious white dress, traditional noble attire, delicate shoes listening intently with a cold demeanor, indoor mystical chamber, evening, atmospheric, masterpiece, best quality, highly detailed, anime",
+      "index": 21
+    },
+    {
+      "prompt": "manga style, mystical and soft-lit setting, young man, black short hair, sharp eyes, calm demeanor, simple gray robe, traditional healer attire, cloth shoes reciting the spiritual cultivation stages with a sharp gaze, young woman, elegant appearance, cold temperament, pale complexion, luxurious white dress, traditional noble attire, delicate shoes observing with a pale, elegant expression, traditional study room, afternoon, atmospheric, ethereal, masterpiece, best quality, highly detailed, anime",
+      "index": 22
+    },
+    {
+      "prompt": "manga style, a scene depicting the hierarchy of spiritual cultivation, young man, black short hair, sharp eyes, calm demeanor, simple gray robe, traditional healer attire, cloth shoes pointing out the strongest and weakest stages with a calm demeanor, young woman, elegant appearance, cold temperament, pale complexion, luxurious white dress, traditional noble attire, delicate shoes nodding in understanding, mystical library, soft lighting, evening, atmospheric, intense, masterpiece, best quality, highly detailed, anime",
+      "index": 23
+    },
+    {
+      "prompt": "manga style, a young man's journey of spiritual cultivation and skill development, young man, black short hair, sharp eyes, calm demeanor, simple gray robe, traditional healer attire, cloth shoes sitting dejectedly after failing to achieve even the first stage,决心放弃修炼, focusing on mastering other skills instead, young woman, elegant appearance, cold temperament, pale complexion, luxurious white dress, traditional noble attire, delicate shoes watching with a mix of pity and respect, indoor chamber, soft lighting, late evening, atmospheric, introspective, masterpiece, best quality, highly detailed, anime",
+      "index": 24
+    },
+    {
+      "prompt": "manga style, a discussion on the futility of certain skills in the face of spiritual practitioners, young man, black short hair, sharp eyes, calm demeanor, simple gray robe, traditional healer attire, cloth shoes explaining with a calm yet disappointed tone, young woman, elegant appearance, cold temperament, pale complexion, luxurious white dress, traditional noble attire, delicate shoes listening with a cold, detached expression, traditional garden setting, soft mystical lighting, dusk, atmospheric, philosophical, masterpiece, best quality, highly detailed, anime",
+      "index": 25
+    },
+    {
+      "prompt": "manga style, mystical atmosphere with soft lighting, medium shot, young man, black short hair, sharp eyes, calm demeanor, simple gray robe, traditional healer attire, cloth shoes standing in his clinic with a calm demeanor, reflecting on his choice of medicine as a livelihood, traditional healer attire, simple gray robe, cloth shoes, wooden interior of clinic, morning light, peaceful, introspective, masterpiece, best quality, highly detailed, anime",
+      "index": 26
+    },
+    {
+      "prompt": "manga style, mystical ambiance with soft lighting, medium shot, young man, black short hair, sharp eyes, calm demeanor, simple gray robe, traditional healer attire, cloth shoes sitting in his clinic with a resigned expression, contemplating his lack of progress in cultivation and his acceptance of his role as a healer, simple gray robe, traditional healer attire, cloth shoes, wooden desk with medical tools, indoor clinic, afternoon light, philosophical, resigned, masterpiece, best quality, highly detailed, anime",
+      "index": 27
+    },
+    {
+      "prompt": "manga style, mystical and festive mood in the city despite the rain, wide shot, young man, black short hair, sharp eyes, calm demeanor, simple gray robe, traditional healer attire, cloth shoes looking out from his clinic into the bustling streets of Qingmu City, traditional noble attire, luxurious white dress, young woman in the crowd, ethereal, atmospheric, soft lighting, masterpiece, best quality, highly detailed, anime",
+      "index": 28
+    },
+    {
+      "prompt": "manga style, mystical and grand wedding preparations visible through the rain, over-the-shoulder shot, young man, black short hair, sharp eyes, calm demeanor, simple gray robe, traditional healer attire, cloth shoes observing the sky with spiritual lights and decorations from his clinic, traditional healer attire, simple gray robe, cloth shoes, outdoor city scene, afternoon rain, dramatic, atmospheric, masterpiece, best quality, highly detailed, anime",
+      "index": 29
+    },
+    {
+      "prompt": "manga style, mystical setting with soft lighting, two shot, young man, black short hair, sharp eyes, calm demeanor, simple gray robe, traditional healer attire, cloth shoes and young woman, elegant appearance, cold temperament, pale complexion, luxurious white dress, traditional noble attire, delicate shoes discussing the unusual wedding in the rain, young man, black short hair, sharp eyes, calm demeanor, simple gray robe, traditional healer attire, cloth shoes with a light-hearted chuckle and young woman, elegant appearance, cold temperament, pale complexion, luxurious white dress, traditional noble attire, delicate shoes with a cold, elegant demeanor, traditional healer attire, simple gray robe, cloth shoes, traditional noble attire, luxurious white dress, indoor clinic, afternoon light, humorous, mysterious, masterpiece, best quality, highly detailed, anime",
+      "index": 30
+    },
+    {
+      "prompt": "manga style, a young man expressing disdain, close-up shot, young man, black short hair, sharp eyes, calm demeanor, simple gray robe, traditional healer attire, cloth shoes with a mocking smile, mysterious atmosphere, soft lighting, traditional healer attire, cloth shoes, masterpiece, best quality, highly detailed, anime",
+      "index": 31
+    },
+    {
+      "prompt": "manga style, a conversation between a healer and a passerby, medium shot, young man, black short hair, sharp eyes, calm demeanor, simple gray robe, traditional healer attire, cloth shoes with a calm demeanor, young woman, elegant appearance, cold temperament, pale complexion, luxurious white dress, traditional noble attire, delicate shoes questioning with a cold temperament, discussing wedding invitation, traditional street, soft lighting, mysterious, masterpiece, best quality, highly detailed, anime",
+      "index": 32
+    },
+    {
+      "prompt": "manga style, a small vendor speaking to a healer, medium shot, young man, black short hair, sharp eyes, calm demeanor, simple gray robe, traditional healer attire, cloth shoes listening attentively in simple gray robe, {小贩} talking animatedly, traditional healer's clinic and a nearby grocery shop, soft lighting, mysterious, masterpiece, best quality, highly detailed, anime",
+      "index": 33
+    },
+    {
+      "prompt": "manga style, a healer's confirmation of receiving an invitation, close-up shot, young man, black short hair, sharp eyes, calm demeanor, simple gray robe, traditional healer attire, cloth shoes nodding with a calm demeanor, young woman, elegant appearance, cold temperament, pale complexion, luxurious white dress, traditional noble attire, delicate shoes waiting for his response, traditional clinic interior, soft lighting, mysterious, masterpiece, best quality, highly detailed, anime",
+      "index": 34
+    },
+    {
+      "prompt": "manga style, a healer presenting a wedding invitation, medium shot, young man, black short hair, sharp eyes, calm demeanor, simple gray robe, traditional healer attire, cloth shoes taking out a red invitation from his robe with a sharp-eyed gaze, young woman, elegant appearance, cold temperament, pale complexion, luxurious white dress, traditional noble attire, delicate shoes observing curiously, traditional clinic interior, soft lighting, mysterious, masterpiece, best quality, highly detailed, anime",
+      "index": 35
+    },
+    {
+      "prompt": "manga style, a grand wedding celebration in a mystical city, wide shot, young man, black short hair, sharp eyes, calm demeanor, simple gray robe, traditional healer attire, cloth shoes observing the bustling scene with a thoughtful expression, young woman, elegant appearance, cold temperament, pale complexion, luxurious white dress, traditional noble attire, delicate shoes distant and elegant in the background, nobles mingling, traditional chinese cityscape, soft lighting, mystical atmosphere, masterpiece, best quality, highly detailed, anime",
+      "index": 36
+    },
+    {
+      "prompt": "manga style, the grandeur of the Bai family compared to the Mo family, medium shot, young man, black short hair, sharp eyes, calm demeanor, simple gray robe, traditional healer attire, cloth shoes standing alone with a puzzled look, young woman, elegant appearance, cold temperament, pale complexion, luxurious white dress, traditional noble attire, delicate shoes in the distance, looking cold and detached, traditional chinese courtyard, soft lighting, mysterious mood, masterpiece, best quality, highly detailed, anime",
+      "index": 37
+    },
+    {
+      "prompt": "manga style, a mismatched marriage between two powerful families, close-up shot, young man, black short hair, sharp eyes, calm demeanor, simple gray robe, traditional healer attire, cloth shoes frowning and skeptical, young woman, elegant appearance, cold temperament, pale complexion, luxurious white dress, traditional noble attire, delicate shoes with a distant gaze, traditional noble attire, soft lighting, mystical ambiance, masterpiece, best quality, highly detailed, anime",
+      "index": 38
+    },
+    {
+      "prompt": "manga style, an invitation to a lavish wedding, two shot, young man, black short hair, sharp eyes, calm demeanor, simple gray robe, traditional healer attire, cloth shoes and young woman, elegant appearance, cold temperament, pale complexion, luxurious white dress, traditional noble attire, delicate shoes in a casual conversation, young man, black short hair, sharp eyes, calm demeanor, simple gray robe, traditional healer attire, cloth shoes with a curious tilt of the head, young woman, elegant appearance, cold temperament, pale complexion, luxurious white dress, traditional noble attire, delicate shoes with a slight smile, traditional street at dusk, soft lighting, mysterious and warm interaction, masterpiece, best quality, highly detailed, anime",
+      "index": 39
+    },
+    {
+      "prompt": "manga style, a peddler showing off a wedding invitation, medium shot, young man, black short hair, sharp eyes, calm demeanor, simple gray robe, traditional healer attire, cloth shoes in the background with a curious expression, the peddler waving the 'Guan Hun Tie' with enthusiasm, traditional market setting, soft lighting, mystical and lively atmosphere, masterpiece, best quality, highly detailed, anime",
+      "index": 40
+    },
+    {
+      "prompt": "manga style, mystical tones, soft lighting, young man, black short hair, sharp eyes, calm demeanor, simple gray robe, traditional healer attire, cloth shoes dismissively waving away the idea of attending a grand wedding, medium shot, young woman, elegant appearance, cold temperament, pale complexion, luxurious white dress, traditional noble attire, delicate shoes listening with a disinterested expression, casual conversation, traditional living room, evening, mysterious atmosphere, masterpiece, best quality, highly detailed, anime",
+      "index": 41
+    },
+    {
+      "prompt": "manga style, mystical tones, soft lighting, young man, black short hair, sharp eyes, calm demeanor, simple gray robe, traditional healer attire, cloth shoes indifferent to the affairs of others, medium shot, young man, black short hair, sharp eyes, calm demeanor, simple gray robe, traditional healer attire, cloth shoes sitting calmly with a detached expression, alone in a room, traditional healer's chamber, quiet evening, serene mood, masterpiece, best quality, highly detailed, anime",
+      "index": 42
+    },
+    {
+      "prompt": "manga style, mystical tones, soft lighting, young man, black short hair, sharp eyes, calm demeanor, simple gray robe, traditional healer attire, cloth shoes expressing mild surprise, close-up shot, young man, black short hair, sharp eyes, calm demeanor, simple gray robe, traditional healer attire, cloth shoes with a puzzled look, in a moment of realization, traditional healer's chamber, dimly lit room, tense atmosphere, masterpiece, best quality, highly detailed, anime",
+      "index": 43
+    },
+    {
+      "prompt": "manga style, mystical tones, soft lighting, young man, black short hair, sharp eyes, calm demeanor, simple gray robe, traditional healer attire, cloth shoes confident in his keen eyesight, medium shot, young man, black short hair, sharp eyes, calm demeanor, simple gray robe, traditional healer attire, cloth shoes standing with a self-assured smile, traditional healer's chamber, contemplative evening, atmospheric, masterpiece, best quality, highly detailed, anime",
+      "index": 44
+    },
+    {
+      "prompt": "manga style, mystical tones, soft lighting, a lone figure wandering in a torrential downpour, wide shot, young woman, elegant appearance, cold temperament, pale complexion, luxurious white dress, traditional noble attire, delicate shoes appearing forlorn and lost, outside in a storm, dramatic atmosphere, masterpiece, best quality, highly detailed, anime",
+      "index": 45
+    },
+    {
+      "prompt": "manga style, a delicate and cold-tempered woman standing alone, medium shot, young woman, elegant appearance, cold temperament, pale complexion, luxurious white dress, traditional noble attire, delicate shoes with a distant expression, soft lighting, mystical atmosphere, traditional street, rainy evening, mysterious, highly detailed, anime",
+      "index": 46
+    },
+    {
+      "prompt": "manga style, a lonely woman wandering in a heavy rain, wide shot, young woman, elegant appearance, cold temperament, pale complexion, luxurious white dress, traditional noble attire, delicate shoes walking aimlessly with a dazed look, soft lighting, mystical atmosphere, deserted street, stormy night, dramatic, highly detailed, anime",
+      "index": 47
+    },
+    {
+      "prompt": "manga style, a once-proud genius now fallen, close-up shot, young woman, elegant appearance, cold temperament, pale complexion, luxurious white dress, traditional noble attire, delicate shoes reflecting on her past with a mix of pride and sorrow, soft lighting, mystical atmosphere, indoor setting, evening, emotional, highly detailed, anime",
+      "index": 48
+    },
+    {
+      "prompt": "manga style, a noblewoman crying in the rain, close-up shot, young woman, elegant appearance, cold temperament, pale complexion, luxurious white dress, traditional noble attire, delicate shoes with tears blending with raindrops, soft lighting, mystical atmosphere, street corner, rainy night, poignant, highly detailed, anime",
+      "index": 49
+    },
+    {
+      "prompt": "manga style, the beginning of a tragedy, medium shot, young woman, elegant appearance, cold temperament, pale complexion, luxurious white dress, traditional noble attire, delicate shoes poisoned and struggling in a secret realm, soft lighting, mystical atmosphere, ancient ruins, three months prior, intense, highly detailed, anime",
+      "index": 50
+    },
+    {
+      "prompt": "manga style, a tragic tale of a noble woman's ruined cultivation, medium shot, young woman, elegant appearance, cold temperament, pale complexion, luxurious white dress, traditional noble attire, delicate shoes sitting in despair with a pale complexion, dressed in luxurious white dress, surrounded by empty medicine bottles and scrolls, mystical, soft lighting, traditional noble room, dramatic atmosphere, masterpiece, best quality, highly detailed, anime",
+      "index": 51
+    },
+    {
+      "prompt": "manga style, a healer's impossible task, close-up shot, young man, black short hair, sharp eyes, calm demeanor, simple gray robe, traditional healer attire, cloth shoes with a solemn expression, shaking head in regret, young woman, elegant appearance, cold temperament, pale complexion, luxurious white dress, traditional noble attire, delicate shoes looking on with cold temperament, traditional healer attire, mystical, soft lighting, indoor clinic, tense atmosphere, masterpiece, best quality, highly detailed, anime",
+      "index": 52
+    },
+    {
+      "prompt": "manga style, a dire situation where poison and life intertwine, two shot, young woman, elegant appearance, cold temperament, pale complexion, luxurious white dress, traditional noble attire, delicate shoes lying on a bed with a weak expression, young man, black short hair, sharp eyes, calm demeanor, simple gray robe, traditional healer attire, cloth shoes standing by her side with a worried look, both figures shrouded in a mystical, soft lighting, traditional bedroom, dramatic atmosphere, masterpiece, best quality, highly detailed, anime",
+      "index": 53
+    },
+    {
+      "prompt": "manga style, the devastating effects of 'Swallowing Truth Demon Poison', medium shot, young woman, elegant appearance, cold temperament, pale complexion, luxurious white dress, traditional noble attire, delicate shoes standing alone with a forlorn gaze, dressed in her luxurious white dress, background showing the remnants of her once powerful cultivation, mystical, soft lighting, ruined training ground, intense atmosphere, masterpiece, best quality, highly detailed, anime",
+      "index": 54
+    },
+    {
+      "prompt": "manga style, a poison more sinister than death, close-up shot, young man, black short hair, sharp eyes, calm demeanor, simple gray robe, traditional healer attire, cloth shoes explaining the cruel nature of the poison with a grave expression, young woman, elegant appearance, cold temperament, pale complexion, luxurious white dress, traditional noble attire, delicate shoes listening with a mix of fear and determination, both in traditional healer and noble attire, mystical, soft lighting, indoor setting, tense atmosphere, masterpiece, best quality, highly detailed, anime",
+      "index": 55
+    },
+    {
+      "prompt": "manga style, a young woman receiving cruel words from her father, close-up shot, young woman, elegant appearance, cold temperament, pale complexion, luxurious white dress, traditional noble attire, delicate shoes with a shocked and hurt expression, {白父} speaking coldly with a stern look, tense family confrontation, traditional noble room, soft mysterious lighting, dramatic atmosphere, masterpiece, best quality, highly detailed, anime",
+      "index": 56
+    },
+    {
+      "prompt": "manga style, a woman reflecting on her past, medium shot, young woman, elegant appearance, cold temperament, pale complexion, luxurious white dress, traditional noble attire, delicate shoes sitting alone in a luxurious room, reminiscing with a mix of sadness and determination, traditional noble attire, soft mysterious lighting, ethereal atmosphere, masterpiece, best quality, highly detailed, anime",
+      "index": 57
+    },
+    {
+      "prompt": "manga style, a woman scorned by her family over a forced marriage, medium shot, young woman, elegant appearance, cold temperament, pale complexion, luxurious white dress, traditional noble attire, delicate shoes standing in a grand hall, overhearing a conversation with a bitter expression, traditional noble attire, soft mysterious lighting, ironic atmosphere, masterpiece, best quality, highly detailed, anime",
+      "index": 58
+    },
+    {
+      "prompt": "manga style, a noble woman facing disdain from her future husband, close-up shot, young woman, elegant appearance, cold temperament, pale complexion, luxurious white dress, traditional noble attire, delicate shoes entering the new family with a proud but hurt demeanor, {墨家大少主} sneering with a look of contempt, traditional noble attire, soft mysterious lighting, tense atmosphere, masterpiece, best quality, highly detailed, anime",
+      "index": 59
+    },
+    {
+      "prompt": "manga style, a woman reflecting on the fleeting nature of fortune and status, medium shot, young woman, elegant appearance, cold temperament, pale complexion, luxurious white dress, traditional noble attire, delicate shoes standing by a window, looking out with a mix of nostalgia and resignation, traditional noble attire, soft mysterious lighting, reflective atmosphere, masterpiece, best quality, highly detailed, anime",
+      "index": 60
+    },
+    {
+      "prompt": "manga style, a young woman reflecting on her lost powers, wide shot, young woman, elegant appearance, cold temperament, pale complexion, luxurious white dress, traditional noble attire, delicate shoes standing in the rain with a cold and weak expression, her cultivation falling rapidly, traditional noble attire now tattered, mystical atmosphere, soft lighting, evening, highly detailed, anime",
+      "index": 61
+    },
+    {
+      "prompt": "manga style, a flashback of a powerful woman's past strength, medium shot, young woman, elegant appearance, cold temperament, pale complexion, luxurious white dress, traditional noble attire, delicate shoes with a sword in her hand, reminiscing about her former ability to split rain with a single sword strike, traditional noble attire, soft lighting, mystical, determined expression, anime",
+      "index": 62
+    },
+    {
+      "prompt": "manga style, a noble woman clutching her sword, close-up shot, young woman, elegant appearance, cold temperament, pale complexion, luxurious white dress, traditional noble attire, delicate shoes holding her soft sword tightly with a fading strength, her elegant appearance now showing signs of struggle, soft lighting, mystical, anime",
+      "index": 63
+    },
+    {
+      "prompt": "manga style, a woman's outcry against fate, medium shot, young woman, elegant appearance, cold temperament, pale complexion, luxurious white dress, traditional noble attire, delicate shoes shouting at the sky with anger and despair, her luxurious white dress now damp and soiled, soft lighting, mystical, rainy background, anime",
+      "index": 64
+    },
+    {
+      "prompt": "manga style, a woman's defiance against her fate, close-up shot, young woman, elegant appearance, cold temperament, pale complexion, luxurious white dress, traditional noble attire, delicate shoes with a determined and resolute expression, her voice echoing 'I refuse to accept this!', traditional noble attire, soft lighting, mystical, anime",
+      "index": 65
+    },
+    {
+      "prompt": "manga style, a young woman lamenting under a gloomy sky, full body shot, young woman, elegant appearance, cold temperament, pale complexion, luxurious white dress, traditional noble attire, delicate shoes looking up at the dark sky with a sigh, her voice drowned by the rain, mysterious, soft lighting, rainy atmosphere, masterpiece, best quality, highly detailed, anime",
+      "index": 66
+    },
+    {
+      "prompt": "manga style, a moment of realization about death, close-up shot, young woman, elegant appearance, cold temperament, pale complexion, luxurious white dress, traditional noble attire, delicate shoes in a daze with a contemplative expression, the concept of death becoming less frightening, mysterious, soft lighting, introspective atmosphere, masterpiece, best quality, highly detailed, anime",
+      "index": 67
+    },
+    {
+      "prompt": "manga style, a contemplation of ending one's life, medium shot, young woman, elegant appearance, cold temperament, pale complexion, luxurious white dress, traditional noble attire, delicate shoes considering the idea of ending her life with a mix of fear and resolve, mysterious, soft lighting, dramatic atmosphere, masterpiece, best quality, highly detailed, anime",
+      "index": 68
+    },
+    {
+      "prompt": "manga style, a woman's determination to resist an unwanted marriage, medium shot, young woman, elegant appearance, cold temperament, pale complexion, luxurious white dress, traditional noble attire, delicate shoes lowering her head, looking at her sword with cold eyes and trembling fingers, slowly drawing the sword, mysterious, soft lighting, defiant atmosphere, masterpiece, best quality, highly detailed, anime",
+      "index": 69
+    },
+    {
+      "prompt": "manga style, an unexpected encounter in the rain, over-the-shoulder shot, young woman, elegant appearance, cold temperament, pale complexion, luxurious white dress, traditional noble attire, delicate shoes with her sword drawn, a voice speaking from behind, mysterious, soft lighting, rainy and curious atmosphere, masterpiece, best quality, highly detailed, anime",
+      "index": 70
+    },
+    {
+      "prompt": "manga style, a young woman turning around to see a handsome young man with beautiful black eyes, soft lighting, young woman, elegant appearance, cold temperament, pale complexion, luxurious white dress, traditional noble attire, delicate shoes surprised and curious expression, young man, black short hair, sharp eyes, calm demeanor, simple gray robe, traditional healer attire, cloth shoes standing calmly with a paper umbrella, mystical atmosphere, traditional street during rainy day, masterpiece, best quality, highly detailed, anime",
+      "index": 71
+    },
+    {
+      "prompt": "manga style, a noble lady initially frightened but then intrigued by a stranger's close proximity, soft lighting, young woman, elegant appearance, cold temperament, pale complexion, luxurious white dress, traditional noble attire, delicate shoes with a mix of fear and interest, young man, black short hair, sharp eyes, calm demeanor, simple gray robe, traditional healer attire, cloth shoes holding an umbrella protectively, mysterious encounter, rainy backdrop, traditional street, masterpiece, best quality, highly detailed, anime",
+      "index": 72
+    },
+    {
+      "prompt": "manga style, a graceful lady expressing gratitude to a gentleman, soft lighting, young woman, elegant appearance, cold temperament, pale complexion, luxurious white dress, traditional noble attire, delicate shoes bowing slightly with a thankful smile, young man, black short hair, sharp eyes, calm demeanor, simple gray robe, traditional healer attire, cloth shoes nodding respectfully, courteous interaction, traditional setting, mystical ambiance, masterpiece, best quality, highly detailed, anime",
+      "index": 73
+    },
+    {
+      "prompt": "manga style, a poised woman sheathing her sword, soft lighting, young woman, elegant appearance, cold temperament, pale complexion, luxurious white dress, traditional noble attire, delicate shoes with a composed and decisive gesture, sword half-drawn now safely back in its sheath, reflective moment, traditional interior, mystical atmosphere, masterpiece, best quality, highly detailed, anime",
+      "index": 74
+    },
+    {
+      "prompt": "manga style, a humble healer dismissing a lady's thanks with a modest gesture, soft lighting, young man, black short hair, sharp eyes, calm demeanor, simple gray robe, traditional healer attire, cloth shoes with a dismissive wave and a gentle smile, young woman, elegant appearance, cold temperament, pale complexion, luxurious white dress, traditional noble attire, delicate shoes looking slightly embarrassed, polite exchange, traditional healer's clinic, mystical and warm ambiance, masterpiece, best quality, highly detailed, anime",
+      "index": 75
+    },
+    {
+      "prompt": "manga style, a young man inviting a lady to take shelter from the rain, medium shot, young man, black short hair, sharp eyes, calm demeanor, simple gray robe, traditional healer attire, cloth shoes extending hand with a calm demeanor, young woman, elegant appearance, cold temperament, pale complexion, luxurious white dress, traditional noble attire, delicate shoes hesitating with a cold temperament, mystical tone, soft lighting, outside clinic, rainy day, atmospheric, masterpiece, best quality, highly detailed, anime",
+      "index": 76
+    },
+    {
+      "prompt": "manga style, a noble lady nodding in agreement after hesitation, close-up shot, young woman, elegant appearance, cold temperament, pale complexion, luxurious white dress, traditional noble attire, delicate shoes nodding with a composed expression, young man, black short hair, sharp eyes, calm demeanor, simple gray robe, traditional healer attire, cloth shoes looking on with a gentle gaze, mystical tone, soft lighting, outside clinic, rainy day, atmospheric, masterpiece, best quality, highly detailed, anime",
+      "index": 77
+    },
+    {
+      "prompt": "manga style, two figures entering a clinic together, medium shot, young man, black short hair, sharp eyes, calm demeanor, simple gray robe, traditional healer attire, cloth shoes and young woman, elegant appearance, cold temperament, pale complexion, luxurious white dress, traditional noble attire, delicate shoes walking side by side, simple and clean clinic interior, mystical tone, soft lighting, traditional healer clinic, daytime, atmospheric, masterpiece, best quality, highly detailed, anime",
+      "index": 78
+    },
+    {
+      "prompt": "manga style, a lady observing a man as he makes tea, medium shot, young woman, elegant appearance, cold temperament, pale complexion, luxurious white dress, traditional noble attire, delicate shoes observing with a critical eye, young man, black short hair, sharp eyes, calm demeanor, simple gray robe, traditional healer attire, cloth shoes focused on brewing tea, mystical tone, soft lighting, inside clinic, peaceful atmosphere, masterpiece, best quality, highly detailed, anime",
+      "index": 79
+    },
+    {
+      "prompt": "manga style, a once-proud noblewoman reflecting on her own vulnerability, close-up shot, young woman, elegant appearance, cold temperament, pale complexion, luxurious white dress, traditional noble attire, delicate shoes with a melancholic expression, contemplating her situation, mystical tone, soft lighting, inside clinic, introspective moment, masterpiece, best quality, highly detailed, anime",
+      "index": 80
+    },
+    {
+      "prompt": "manga style, a warm gesture in a mystical setting, medium shot, young man, black short hair, sharp eyes, calm demeanor, simple gray robe, traditional healer attire, cloth shoes offering a cup of tea with a gentle smile, young woman, elegant appearance, cold temperament, pale complexion, luxurious white dress, traditional noble attire, delicate shoes looking at the tea with a slight frown, intimate moment, traditional healer's room, soft lighting, mysterious atmosphere, masterpiece, best quality, highly detailed, anime",
+      "index": 81
+    },
+    {
+      "prompt": "manga style, a subtle observation in a mystical setting, medium shot, young man, black short hair, sharp eyes, calm demeanor, simple gray robe, traditional healer attire, cloth shoes returning with tea and placing it before young woman, elegant appearance, cold temperament, pale complexion, luxurious white dress, traditional noble attire, delicate shoes, scrutinizing her face with a calm demeanor, young woman, elegant appearance, cold temperament, pale complexion, luxurious white dress, traditional noble attire, delicate shoes noticing his gaze with a hint of annoyance, traditional healer's room, soft lighting, mysterious atmosphere, masterpiece, best quality, highly detailed, anime",
+      "index": 82
+    },
+    {
+      "prompt": "manga style, a sudden question in a mystical setting, close-up shot, young man, black short hair, sharp eyes, calm demeanor, simple gray robe, traditional healer attire, cloth shoes asking young woman, elegant appearance, cold temperament, pale complexion, luxurious white dress, traditional noble attire, delicate shoes about her health with a direct and cold tone, young woman, elegant appearance, cold temperament, pale complexion, luxurious white dress, traditional noble attire, delicate shoes taken aback and then smiling bitterly, traditional healer's room, soft lighting, mysterious atmosphere, masterpiece, best quality, highly detailed, anime",
+      "index": 83
+    },
+    {
+      "prompt": "manga style, a realization of illness in a mystical setting, medium shot, young woman, elegant appearance, cold temperament, pale complexion, luxurious white dress, traditional noble attire, delicate shoes admitting her illness with a bitter smile, young man, black short hair, sharp eyes, calm demeanor, simple gray robe, traditional healer attire, cloth shoes listening with a serious expression, traditional healer's room, soft lighting, mysterious atmosphere, masterpiece, best quality, highly detailed, anime",
+      "index": 84
+    },
+    {
+      "prompt": "manga style, a reflection on a prolonged illness in a mystical setting, close-up shot, young woman, elegant appearance, cold temperament, pale complexion, luxurious white dress, traditional noble attire, delicate shoes expressing the duration of her symptoms with a sigh, young man, black short hair, sharp eyes, calm demeanor, simple gray robe, traditional healer attire, cloth shoes nodding in understanding, traditional healer's room, soft lighting, mysterious atmosphere, masterpiece, best quality, highly detailed, anime",
+      "index": 85
+    },
+    {
+      "prompt": "manga style, a mysterious and soft-lit scene of a healer diagnosing a noblewoman, close-up shot, young man, black short hair, sharp eyes, calm demeanor, simple gray robe, traditional healer attire, cloth shoes observing intently and feeling young woman, elegant appearance, cold temperament, pale complexion, luxurious white dress, traditional noble attire, delicate shoes's wrist for pulse with a calm demeanor, young woman, elegant appearance, cold temperament, pale complexion, luxurious white dress, traditional noble attire, delicate shoes slightly resisting but enduring, traditional clinic interior, mystical atmosphere, masterpiece, best quality, highly detailed, anime",
+      "index": 86
+    },
+    {
+      "prompt": "manga style, a comparison of manners between a brash young master and a courteous commoner, medium shot, young woman, elegant appearance, cold temperament, pale complexion, luxurious white dress, traditional noble attire, delicate shoes reflecting on the politeness of young man, black short hair, sharp eyes, calm demeanor, simple gray robe, traditional healer attire, cloth shoes with a sense of approval, young man, black short hair, sharp eyes, calm demeanor, simple gray robe, traditional healer attire, cloth shoes standing respectfully, traditional noble hall, soft lighting, mystical, atmospheric, masterpiece, best quality, highly detailed, anime",
+      "index": 87
+    },
+    {
+      "prompt": "manga style, a healer offering medicine to a skeptical noblewoman, two shot, young man, black short hair, sharp eyes, calm demeanor, simple gray robe, traditional healer attire, cloth shoes presenting medicine with a gentle smile, young woman, elegant appearance, cold temperament, pale complexion, luxurious white dress, traditional noble attire, delicate shoes looking at the medicine with doubt, traditional clinic setting, soft lighting, mystical, dramatic, masterpiece, best quality, highly detailed, anime",
+      "index": 88
+    },
+    {
+      "prompt": "manga style, a healer preparing medicine for a patient, full body shot, young man, black short hair, sharp eyes, calm demeanor, simple gray robe, traditional healer attire, cloth shoes walking to the counter, grabbing herbs, and heading to the back room to prepare the medicine, traditional clinic counter, soft lighting, mystical, active, masterpiece, best quality, highly detailed, anime",
+      "index": 89
+    },
+    {
+      "prompt": "manga style, a noblewoman finding humor in the凡人's inability to understand her problems, medium shot, young woman, elegant appearance, cold temperament, pale complexion, luxurious white dress, traditional noble attire, delicate shoes with a mocking smile, young man, black short hair, sharp eyes, calm demeanor, simple gray robe, traditional healer attire, cloth shoes out of frame, implying his limited understanding, traditional noble room, soft lighting, mystical, ironic, masterpiece, best quality, highly detailed, anime",
+      "index": 90
+    },
+    {
+      "prompt": "manga style, a young man discussing the impossibility of healing a troublesome ailment, even for the imperial elite, medium shot, young man, black short hair, sharp eyes, calm demeanor, simple gray robe, traditional healer attire, cloth shoes with a calm demeanor and sharp eyes, speaking confidently, young woman, elegant appearance, cold temperament, pale complexion, luxurious white dress, traditional noble attire, delicate shoes listening intently, traditional healer's room, mystical soft lighting, mysterious atmosphere, masterpiece, best quality, highly detailed, anime",
+      "index": 91
+    },
+    {
+      "prompt": "manga style, a noblewoman reluctantly accepting a bowl of medicine from a healer, medium shot, young woman, elegant appearance, cold temperament, pale complexion, luxurious white dress, traditional noble attire, delicate shoes with a cold temperament and elegant appearance, hesitantly sipping the steaming bowl of soup, young man, black short hair, sharp eyes, calm demeanor, simple gray robe, traditional healer attire, cloth shoes offering the bowl with a gentle smile, traditional clinic interior, mystical soft lighting, tense atmosphere, masterpiece, best quality, highly detailed, anime",
+      "index": 92
+    },
+    {
+      "prompt": "manga style, a young woman's face expressing shock after tasting a seemingly ordinary medicine, close-up shot, young woman, elegant appearance, cold temperament, pale complexion, luxurious white dress, traditional noble attire, delicate shoes with a pale complexion and elegant appearance, her eyes wide with astonishment, traditional clinic interior, soft lighting, dramatic atmosphere, masterpiece, best quality, highly detailed, anime",
+      "index": 93
+    },
+    {
+      "prompt": "manga style, a noblewoman experiencing a miraculous recovery from a potent medicine, full body shot, young woman, elegant appearance, cold temperament, pale complexion, luxurious white dress, traditional noble attire, delicate shoes with a luxurious white dress, feeling the surge of potent medicinal energy throughout her body, traditional clinic interior, mystical soft lighting, intense atmosphere, masterpiece, best quality, highly detailed, anime",
+      "index": 94
+    },
+    {
+      "prompt": "manga style, a young woman in disbelief and hope as she gazes at the bowl of medicine, medium shot, young woman, elegant appearance, cold temperament, pale complexion, luxurious white dress, traditional noble attire, delicate shoes with a stunned expression, murmuring in disbelief, young man, black short hair, sharp eyes, calm demeanor, simple gray robe, traditional healer attire, cloth shoes observing with a calm demeanor, traditional clinic interior, soft lighting, mystical atmosphere, masterpiece, best quality, highly detailed, anime",
+      "index": 95
+    },
+    {
+      "prompt": "manga style, mystical energy surge, wide shot, young woman, elegant appearance, cold temperament, pale complexion, luxurious white dress, traditional noble attire, delicate shoes standing with a look of astonishment as her cultivation rapidly ascends, breaking through to the Nascent Soul stage, surrounded by a mystical aura, ancient study room, soft lighting, dramatic atmosphere, masterpiece, best quality, highly detailed, anime",
+      "index": 96
+    },
+    {
+      "prompt": "manga style, a pivotal breakthrough moment, close-up shot, young woman, elegant appearance, cold temperament, pale complexion, luxurious white dress, traditional noble attire, delicate shoes with a shocked expression as she realizes her cultivation has broken through, mystical energy swirling around her, traditional noble room, soft lighting, intense mood, masterpiece, best quality, highly detailed, anime",
+      "index": 97
+    },
+    {
+      "prompt": "manga style, a simple act leading to a miraculous change, medium shot, young woman, elegant appearance, cold temperament, pale complexion, luxurious white dress, traditional noble attire, delicate shoes sitting in contemplation, holding a bowl of medicine, her expression shifting from disbelief to awe, traditional dining room, soft lighting, mysterious ambiance, masterpiece, best quality, highly detailed, anime",
+      "index": 98
+    },
+    {
+      "prompt": "manga style, a moment of profound realization amidst a storm, two shot, young woman, elegant appearance, cold temperament, pale complexion, luxurious white dress, traditional noble attire, delicate shoes gazing out the window at the heavy rain with a dazed expression, young man, black short hair, sharp eyes, calm demeanor, simple gray robe, traditional healer attire, cloth shoes observing her from the side with a calm demeanor, traditional noble room, soft lighting, reflective mood, masterpiece, best quality, highly detailed, anime",
+      "index": 99
+    },
+    {
+      "prompt": "manga style, a question of wonder and amazement, close-up shot, young woman, elegant appearance, cold temperament, pale complexion, luxurious white dress, traditional noble attire, delicate shoes looking at a bowl of medicine with a mix of shock and curiosity, young man, black short hair, sharp eyes, calm demeanor, simple gray robe, traditional healer attire, cloth shoes standing nearby with a composed expression, traditional healer's room, soft lighting, inquisitive atmosphere, masterpiece, best quality, highly detailed, anime",
+      "index": 100
+    }
+  ]
+}

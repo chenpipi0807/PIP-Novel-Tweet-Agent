@@ -1,0 +1,345 @@
+{% extends "base.html" %}
+
+{% block title %}任务管理 - 短剧AI生成系统{% endblock %}
+
+{% block content %}
+<div id="app">
+    <h2>任务管理</h2>
+    
+    <div id="taskList"></div>
+</div>
+
+<style>
+    h2 {
+        font-size: 1.8em;
+        margin-bottom: 30px;
+        color: #e8eaed;
+        font-weight: 600;
+    }
+    
+    .task-card {
+        background: #242938;
+        border-radius: 12px;
+        padding: 24px;
+        margin-bottom: 20px;
+        border-left: 4px solid #6366f1;
+        transition: all 0.3s;
+    }
+    
+    .task-card:hover {
+        background: #2a3042;
+        transform: translateX(4px);
+    }
+    
+    .task-card.running {
+        border-left-color: #22c55e;
+        background: rgba(34, 197, 94, 0.05);
+    }
+    
+    .task-card.completed {
+        border-left-color: #3b82f6;
+        background: rgba(59, 130, 246, 0.05);
+    }
+    
+    .task-card.failed {
+        border-left-color: #ef4444;
+        background: rgba(239, 68, 68, 0.05);
+    }
+    
+    .task-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+    }
+    
+    .task-title {
+        font-size: 1.3em;
+        font-weight: 600;
+        color: #e8eaed;
+    }
+    
+    .task-status {
+        padding: 6px 16px;
+        border-radius: 20px;
+        font-size: 0.85em;
+        font-weight: 600;
+    }
+    
+    .status-pending {
+        background: rgba(251, 191, 36, 0.2);
+        color: #fbbf24;
+    }
+    
+    .status-running {
+        background: rgba(34, 197, 94, 0.2);
+        color: #22c55e;
+    }
+    
+    .status-completed {
+        background: rgba(59, 130, 246, 0.2);
+        color: #3b82f6;
+    }
+    
+    .status-failed {
+        background: rgba(239, 68, 68, 0.2);
+        color: #ef4444;
+    }
+    
+    .task-info {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 15px;
+        margin-bottom: 15px;
+    }
+    
+    .info-item {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .info-label {
+        font-size: 0.85em;
+        color: #9ca3af;
+        margin-bottom: 6px;
+    }
+    
+    .info-value {
+        font-weight: 500;
+        color: #e8eaed;
+    }
+    
+    .progress-bar {
+        width: 100%;
+        height: 28px;
+        background: #1a1f2e;
+        border-radius: 14px;
+        overflow: hidden;
+        margin-top: 12px;
+        border: 1px solid #2d3548;
+    }
+    
+    .progress-fill {
+        height: 100%;
+        background: linear-gradient(90deg, #6366f1 0%, #8b5cf6 100%);
+        transition: width 0.5s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 0.85em;
+        font-weight: 600;
+    }
+    
+    .task-actions {
+        display: flex;
+        gap: 10px;
+        margin-top: 15px;
+    }
+    
+    .btn-small {
+        padding: 8px 20px;
+        font-size: 0.9em;
+    }
+    
+    .video-player {
+        margin-top: 15px;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+    
+    .video-player video {
+        width: 100%;
+        max-height: 500px;
+    }
+    
+    .empty-state {
+        text-align: center;
+        padding: 80px 20px;
+        color: #9ca3af;
+    }
+    
+    .empty-state svg {
+        width: 100px;
+        height: 100px;
+        margin-bottom: 20px;
+        opacity: 0.3;
+    }
+    
+    .empty-state h3 {
+        color: #e8eaed;
+        margin-bottom: 12px;
+    }
+</style>
+
+<script>
+let refreshInterval;
+
+function loadTasks() {
+    fetch('/api/tasks')
+        .then(res => res.json())
+        .then(tasks => {
+            const taskList = document.getElementById('taskList');
+            
+            if (tasks.length === 0) {
+                taskList.innerHTML = `
+                    <div class="empty-state">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <h3>暂无任务</h3>
+                        <p>去创建第一个任务吧！</p>
+                        <a href="/" class="btn" style="display: inline-block; margin-top: 20px; text-decoration: none;">创建任务</a>
+                    </div>
+                `;
+                return;
+            }
+            
+            taskList.innerHTML = tasks.map(task => {
+                const statusText = {
+                    'pending': '等待中',
+                    'running': '执行中',
+                    'completed': '已完成',
+                    'failed': '失败'
+                }[task.status];
+                
+                let actionsHtml = '';
+                
+                if (task.status === 'completed') {
+                    actionsHtml = `
+                        <button class="btn btn-small" onclick="viewDetail('${task.project_name}')">
+                            📋 查看详情
+                        </button>
+                        <button class="btn btn-small" onclick="viewVideo('${task.project_name}')">
+                            📺 查看视频
+                        </button>
+                    `;
+                } else if (task.status === 'incomplete' && task.can_continue) {
+                    actionsHtml = `
+                        <button class="btn btn-small" onclick="continueProject('${task.project_name}')">
+                            ▶️ 继续执行
+                        </button>
+                        <button class="btn btn-small" onclick="viewDetail('${task.project_name}')">
+                            📋 查看详情
+                        </button>
+                    `;
+                }
+                
+                let videoHtml = '';
+                if (task.status === 'completed' && task.video_path) {
+                    videoHtml = `
+                        <div class="video-player" id="video-${task.project_name}" style="display: none;">
+                            <video controls>
+                                <source src="/api/video/${task.project_name}" type="video/mp4">
+                            </video>
+                        </div>
+                    `;
+                }
+                
+                let errorHtml = '';
+                if (task.error) {
+                    errorHtml = `
+                        <div class="alert alert-error" style="margin-top: 15px;">
+                            <strong>错误:</strong> ${task.error}
+                        </div>
+                    `;
+                }
+                
+                return `
+                    <div class="task-card ${task.status}">
+                        <div class="task-header">
+                            <div class="task-title">📁 ${task.project_name}</div>
+                            <div class="task-status status-${task.status}">${statusText}</div>
+                        </div>
+                        
+                        <div class="task-info">
+                            <div class="info-item">
+                                <div class="info-label">音色</div>
+                                <div class="info-value">${task.timbre || '默认'}</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">开始时间</div>
+                                <div class="info-value">${task.start_time || '-'}</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">耗时</div>
+                                <div class="info-value">${task.duration || '-'}</div>
+                            </div>
+                            ${task.total_scenes ? `
+                            <div class="info-item">
+                                <div class="info-label">分镜进度</div>
+                                <div class="info-value">${task.completed_scenes}/${task.total_scenes}</div>
+                            </div>
+                            ` : ''}
+                        </div>
+                        
+                        ${task.status === 'running' ? `
+                            <div>
+                                <div class="info-label">${task.current_step}</div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: ${task.progress}%">
+                                        ${task.progress}%
+                                    </div>
+                                </div>
+                            </div>
+                        ` : ''}
+                        
+                        ${errorHtml}
+                        
+                        <div class="task-actions">
+                            ${actionsHtml}
+                        </div>
+                        
+                        ${videoHtml}
+                    </div>
+                `;
+            }).join('');
+        });
+}
+
+function viewDetail(projectName) {
+    window.location.href = `/project/${projectName}`;
+}
+
+function viewVideo(projectName) {
+    const videoDiv = document.getElementById(`video-${projectName}`);
+    if (videoDiv.style.display === 'none') {
+        videoDiv.style.display = 'block';
+    } else {
+        videoDiv.style.display = 'none';
+    }
+}
+
+async function continueProject(projectName) {
+    if (!confirm(`确定要继续执行项目"${projectName}"吗？`)) return;
+    
+    try {
+        const response = await fetch(`/api/continue_project/${projectName}`, {
+            method: 'POST'
+        });
+        
+        const result = await response.json();
+        
+        if (response.ok) {
+            alert(`✓ ${result.message}`);
+            loadTasks();
+        } else {
+            alert(`❌ ${result.error}`);
+        }
+    } catch (error) {
+        alert(`❌ 继续执行失败: ${error.message}`);
+    }
+}
+
+// 初始加载
+loadTasks();
+
+// 每3秒刷新一次
+refreshInterval = setInterval(loadTasks, 3000);
+
+// 页面卸载时清除定时器
+window.addEventListener('beforeunload', () => {
+    clearInterval(refreshInterval);
+});
+</script>
+{% endblock %}

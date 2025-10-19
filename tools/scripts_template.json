@@ -1,0 +1,47 @@
+[
+    {
+        "text": "第一集：命运的相遇",
+        "timbre": "播音中年男",
+        "filename": "ep01_title.wav"
+    },
+    {
+        "text": "在一个阳光明媚的早晨，李明走在熟悉的街道上。",
+        "timbre": "播音中年男",
+        "filename": "ep01_narration_01.wav"
+    },
+    {
+        "text": "今天会发生什么呢？他心中充满期待。",
+        "timbre": "播音中年男",
+        "filename": "ep01_narration_02.wav"
+    },
+    {
+        "text": "你好，请问这里是科技大厦吗？",
+        "timbre": "温柔学姐",
+        "filename": "ep01_female_01.wav"
+    },
+    {
+        "text": "是的，你找对地方了。请问有什么可以帮你的吗？",
+        "timbre": "温润青年",
+        "filename": "ep01_male_01.wav"
+    },
+    {
+        "text": "我是来面试的，今天是我第一天。",
+        "timbre": "温柔学姐",
+        "filename": "ep01_female_02.wav"
+    },
+    {
+        "text": "欢迎！我叫李明，也是今天第一天入职。看来我们是同事了。",
+        "timbre": "温润青年",
+        "filename": "ep01_male_02.wav"
+    },
+    {
+        "text": "真是太巧了！我叫小雅，很高兴认识你。",
+        "timbre": "温柔学姐",
+        "filename": "ep01_female_03.wav"
+    },
+    {
+        "text": "两人相视一笑，这是他们命运的开始。",
+        "timbre": "播音中年男",
+        "filename": "ep01_narration_03.wav"
+    }
+]

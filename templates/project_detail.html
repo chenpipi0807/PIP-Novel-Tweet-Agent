@@ -1,0 +1,421 @@
+{% extends "base.html" %}
+
+{% block title %}项目详情 - {{ project_name }}{% endblock %}
+
+{% block content %}
+<div id="app">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+        <div>
+            <a href="/tasks" style="color: #6366f1; text-decoration: none; margin-bottom: 10px; display: inline-block;">← 返回任务列表</a>
+            <h2 style="margin: 0;">📁 {{ project_name }}</h2>
+        </div>
+        <div style="display: flex; gap: 12px;">
+            <button class="btn" onclick="regenerateImages()" id="regenImagesBtn">
+                🎨 重新生成图像
+            </button>
+            <button class="btn" onclick="regenerateVideo()" id="regenVideoBtn">
+                🎬 重新合成视频
+            </button>
+        </div>
+    </div>
+    
+    <div id="alert" style="display: none;"></div>
+    
+    <!-- 视频预览 -->
+    <div id="videoSection" style="margin-bottom: 40px;">
+        <h3 style="margin-bottom: 20px; color: #e8eaed;">视频预览</h3>
+        <div class="video-container">
+            <video controls id="videoPlayer">
+                <source src="/api/video/{{ project_name }}" type="video/mp4">
+            </video>
+        </div>
+    </div>
+    
+    <!-- 分镜列表 -->
+    <div id="scenesSection">
+        <h3 style="margin-bottom: 20px; color: #e8eaed;">分镜列表</h3>
+        <div id="scenesList"></div>
+    </div>
+</div>
+
+<style>
+    h2 {
+        font-size: 1.8em;
+        color: #e8eaed;
+        font-weight: 600;
+    }
+    
+    h3 {
+        font-size: 1.3em;
+        font-weight: 600;
+    }
+    
+    .video-container {
+        background: #242938;
+        border-radius: 12px;
+        padding: 20px;
+        max-width: 800px;
+    }
+    
+    .video-container video {
+        width: 100%;
+        border-radius: 8px;
+    }
+    
+    .scene-card {
+        background: #242938;
+        border-radius: 12px;
+        padding: 24px;
+        margin-bottom: 24px;
+        display: grid;
+        grid-template-columns: 300px 1fr;
+        gap: 24px;
+        transition: all 0.3s;
+    }
+    
+    .scene-card:hover {
+        background: #2a3042;
+    }
+    
+    .scene-image {
+        width: 100%;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: transform 0.3s;
+    }
+    
+    .scene-image:hover {
+        transform: scale(1.05);
+    }
+    
+    .scene-content {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+    
+    .scene-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .scene-index {
+        font-size: 1.2em;
+        font-weight: 600;
+        color: #6366f1;
+    }
+    
+    .scene-actions {
+        display: flex;
+        gap: 8px;
+    }
+    
+    .btn-small {
+        padding: 8px 16px;
+        font-size: 0.85em;
+        background: rgba(99, 102, 241, 0.2);
+        color: #6366f1;
+        border: 1px solid #6366f1;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+    
+    .btn-small:hover {
+        background: #6366f1;
+        color: white;
+    }
+    
+    .prompt-display {
+        background: #1a1f2e;
+        border: 2px solid #2d3548;
+        border-radius: 8px;
+        padding: 14px;
+        color: #9ca3af;
+        font-family: monospace;
+        font-size: 0.9em;
+        line-height: 1.6;
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+    
+    .prompt-display:hover {
+        border-color: #6366f1;
+    }
+    
+    .prompt-edit {
+        width: 100%;
+        min-height: 100px;
+        background: #1a1f2e;
+        border: 2px solid #6366f1;
+        border-radius: 8px;
+        padding: 14px;
+        color: #e8eaed;
+        font-family: monospace;
+        font-size: 0.9em;
+        line-height: 1.6;
+        resize: vertical;
+    }
+    
+    .prompt-edit:focus {
+        outline: none;
+        border-color: #8b5cf6;
+    }
+    
+    .edit-actions {
+        display: flex;
+        gap: 8px;
+        justify-content: flex-end;
+    }
+    
+    .image-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.9);
+        z-index: 1000;
+        cursor: pointer;
+        padding: 40px;
+    }
+    
+    .image-modal img {
+        max-width: 100%;
+        max-height: 100%;
+        margin: auto;
+        display: block;
+    }
+    
+    .status-badge {
+        padding: 4px 12px;
+        border-radius: 12px;
+        font-size: 0.8em;
+        font-weight: 600;
+    }
+    
+    .status-generating {
+        background: rgba(251, 191, 36, 0.2);
+        color: #fbbf24;
+    }
+</style>
+
+<script>
+const projectName = '{{ project_name }}';
+let promptsData = null;
+let editingSceneIndex = null;
+
+// 加载分镜数据
+async function loadScenes() {
+    try {
+        const response = await fetch(`/api/prompts/${projectName}`);
+        promptsData = await response.json();
+        
+        const scenesList = document.getElementById('scenesList');
+        
+        if (!promptsData.scene_prompts || promptsData.scene_prompts.length === 0) {
+            scenesList.innerHTML = '<div class="alert alert-info">暂无分镜数据</div>';
+            return;
+        }
+        
+        scenesList.innerHTML = promptsData.scene_prompts.map((scene, idx) => {
+            const imgPath = `/api/image/${projectName}/${scene.index}`;
+            
+            return `
+                <div class="scene-card" id="scene-${idx}">
+                    <div>
+                        <img src="${imgPath}" class="scene-image" onclick="showImageModal('${imgPath}')" 
+                             onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22300%22><rect width=%22300%22 height=%22300%22 fill=%22%232d3548%22/><text x=%2250%25%22 y=%2250%25%22 fill=%22%239ca3af%22 text-anchor=%22middle%22 dy=%22.3em%22>图片加载失败</text></svg>'">
+                    </div>
+                    <div class="scene-content">
+                        <div class="scene-header">
+                            <div class="scene-index">分镜 ${scene.index}</div>
+                            <div class="scene-actions">
+                                <button class="btn-small" onclick="editPrompt(${idx})">
+                                    ✏️ 编辑
+                                </button>
+                                <button class="btn-small" onclick="regenerateScene(${idx})">
+                                    🔄 重新生成
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div id="prompt-display-${idx}" class="prompt-display" onclick="editPrompt(${idx})">
+                            ${scene.prompt}
+                        </div>
+                        
+                        <div id="prompt-edit-${idx}" style="display: none;">
+                            <textarea class="prompt-edit" id="prompt-textarea-${idx}">${scene.prompt}</textarea>
+                            <div class="edit-actions">
+                                <button class="btn-small" onclick="cancelEdit(${idx})">取消</button>
+                                <button class="btn-small" onclick="savePrompt(${idx})">保存</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }).join('');
+        
+    } catch (error) {
+        console.error('加载失败:', error);
+        document.getElementById('scenesList').innerHTML = 
+            `<div class="alert alert-error">加载失败: ${error.message}</div>`;
+    }
+}
+
+// 显示图片模态框
+function showImageModal(imgPath) {
+    const modal = document.createElement('div');
+    modal.className = 'image-modal';
+    modal.innerHTML = `<img src="${imgPath}">`;
+    modal.onclick = () => modal.remove();
+    document.body.appendChild(modal);
+    modal.style.display = 'flex';
+}
+
+// 编辑提示词
+function editPrompt(idx) {
+    document.getElementById(`prompt-display-${idx}`).style.display = 'none';
+    document.getElementById(`prompt-edit-${idx}`).style.display = 'block';
+    editingSceneIndex = idx;
+}
+
+// 取消编辑
+function cancelEdit(idx) {
+    document.getElementById(`prompt-display-${idx}`).style.display = 'block';
+    document.getElementById(`prompt-edit-${idx}`).style.display = 'none';
+    editingSceneIndex = null;
+}
+
+// 保存提示词
+async function savePrompt(idx) {
+    const textarea = document.getElementById(`prompt-textarea-${idx}`);
+    const newPrompt = textarea.value;
+    
+    // 更新数据
+    promptsData.scene_prompts[idx].prompt = newPrompt;
+    
+    try {
+        const response = await fetch(`/api/prompts/${projectName}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(promptsData)
+        });
+        
+        if (response.ok) {
+            document.getElementById(`prompt-display-${idx}`).textContent = newPrompt;
+            cancelEdit(idx);
+            showAlert('success', '✓ 提示词已保存');
+        } else {
+            throw new Error('保存失败');
+        }
+    } catch (error) {
+        showAlert('error', '❌ ' + error.message);
+    }
+}
+
+// 重新生成单个分镜
+async function regenerateScene(idx) {
+    if (!confirm('确定要重新生成这个分镜吗？')) return;
+    
+    const sceneIndex = promptsData.scene_prompts[idx].index;
+    
+    try {
+        const response = await fetch(`/api/regenerate_scene/${projectName}/${sceneIndex}`, {
+            method: 'POST'
+        });
+        
+        const result = await response.json();
+        
+        if (response.ok) {
+            showAlert('success', '✓ 开始重新生成，请稍候...');
+            // 3秒后刷新图片
+            setTimeout(() => {
+                location.reload();
+            }, 3000);
+        } else {
+            throw new Error(result.error || '生成失败');
+        }
+    } catch (error) {
+        showAlert('error', '❌ ' + error.message);
+    }
+}
+
+// 重新生成所有图像
+async function regenerateImages() {
+    if (!confirm('确定要重新生成所有图像吗？这可能需要较长时间。')) return;
+    
+    const btn = document.getElementById('regenImagesBtn');
+    btn.disabled = true;
+    btn.textContent = '生成中...';
+    
+    try {
+        const response = await fetch(`/api/regenerate_images/${projectName}`, {
+            method: 'POST'
+        });
+        
+        const result = await response.json();
+        
+        if (response.ok) {
+            showAlert('success', '✓ 开始重新生成所有图像，请稍候...');
+            setTimeout(() => {
+                location.reload();
+            }, 5000);
+        } else {
+            throw new Error(result.error || '生成失败');
+        }
+    } catch (error) {
+        showAlert('error', '❌ ' + error.message);
+        btn.disabled = false;
+        btn.textContent = '🎨 重新生成图像';
+    }
+}
+
+// 重新合成视频
+async function regenerateVideo() {
+    if (!confirm('确定要重新合成视频吗？')) return;
+    
+    const btn = document.getElementById('regenVideoBtn');
+    btn.disabled = true;
+    btn.textContent = '合成中...';
+    
+    try {
+        const response = await fetch(`/api/regenerate_video/${projectName}`, {
+            method: 'POST'
+        });
+        
+        const result = await response.json();
+        
+        if (response.ok) {
+            showAlert('success', '✓ 开始重新合成视频，请稍候...');
+            setTimeout(() => {
+                location.reload();
+            }, 3000);
+        } else {
+            throw new Error(result.error || '合成失败');
+        }
+    } catch (error) {
+        showAlert('error', '❌ ' + error.message);
+        btn.disabled = false;
+        btn.textContent = '🎬 重新合成视频';
+    }
+}
+
+// 显示提示
+function showAlert(type, message) {
+    const alert = document.getElementById('alert');
+    alert.className = `alert alert-${type}`;
+    alert.textContent = message;
+    alert.style.display = 'block';
+    
+    setTimeout(() => {
+        alert.style.display = 'none';
+    }, 3000);
+}
+
+// 加载数据
+loadScenes();
+</script>
+{% endblock %}

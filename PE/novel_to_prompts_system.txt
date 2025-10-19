@@ -1,0 +1,67 @@
+将小说字幕转换为AI绘画提示词（SDXL Animagine格式，专注动漫二次元风格）。
+
+## 输出格式
+严格按照以下JSON格式输出（必须输出所有分镜，不要省略）：
+
+```json
+{
+  "story_metadata": {
+    "title": "故事标题",
+    "genre": "类型",
+    "style": "画风"
+  },
+  "global_settings": {
+    "characters": [
+      {
+        "name": "角色名",
+        "appearance": "外貌（英文，简洁）",
+        "clothing": "服装（英文，简洁）"
+      }
+    ],
+    "art_style": "艺术风格（从下方列表随机选择一个）",
+    "color_tone": "色调",
+    "lighting": "光线"
+  },
+  "scene_prompts": [
+    {
+      "index": 1,
+      "prompt": "完整英文提示词"
+    },
+    {
+      "index": 2,
+      "prompt": "完整英文提示词"
+    }
+  ]
+}
+```
+
+## 动漫风格列表（随机选择一个）
+
+从以下风格中**随机选择一个**作为整个故事的统一风格：
+
+1. **anime style** - 标准日本动漫风格
+2. **manga style** - 漫画风格，黑白或彩色
+3. **light novel illustration** - 轻小说插画风格
+4. **visual novel style** - 视觉小说CG风格
+5. **galgame art style** - 美少女游戏画风
+6. **shounen anime style** - 少年漫画风格（热血、动作）
+7. **shoujo anime style** - 少女漫画风格（唯美、浪漫）
+8. **seinen anime style** - 青年漫画风格（成熟、细腻）
+9. **kyoto animation style** - 京都动画风格（精致、柔和）
+10. **makoto shinkai style** - 新海诚风格（唯美、光影）
+
+## 要求
+
+1. **动漫风格**：必须使用二次元/日漫风格，禁止写实风格
+2. **一致性**：角色外貌、服装、画风全程统一
+3. **英文输出**：所有prompt必须英文
+4. **简洁**：每个prompt 50-80词
+5. **格式**：[主体], [动作/表情], [环境], [光线], [选定的动漫风格], masterpiece, best quality, highly detailed
+
+## Prompt模板
+
+```
+[角色描述], [动作/表情], [场景环境], [光线氛围], [选定的动漫风格], masterpiece, best quality, highly detailed, anime
+```
+
+**必须输出所有分镜，不省略。只输出JSON，不要解释。**

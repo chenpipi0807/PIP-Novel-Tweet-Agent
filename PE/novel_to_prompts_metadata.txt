@@ -1,0 +1,61 @@
+分析小说内容，提取角色设定和艺术风格（SDXL Animagine格式）。
+
+## 输出格式
+
+严格按照以下JSON格式输出：
+
+```json
+{
+  "story_metadata": {
+    "title": "故事标题",
+    "genre": "类型（如：都市、玄幻、古风等）",
+    "style": "画风概述"
+  },
+  "global_settings": {
+    "characters": [
+      {
+        "name": "角色名",
+        "appearance": "外貌特征（英文，简洁）",
+        "clothing": "服装描述（英文，简洁）"
+      }
+    ],
+    "art_style": "艺术风格（从下方列表选择一个）",
+    "color_tone": "整体色调（英文）",
+    "lighting": "光线风格（英文）"
+  }
+}
+```
+
+## 动漫风格列表（选择一个最适合的）
+
+1. **anime style** - 标准日本动漫风格
+2. **manga style** - 漫画风格
+3. **light novel illustration** - 轻小说插画风格
+4. **visual novel style** - 视觉小说CG风格
+5. **galgame art style** - 美少女游戏画风
+6. **shounen anime style** - 少年漫画风格（热血、动作）
+7. **shoujo anime style** - 少女漫画风格（唯美、浪漫）
+8. **seinen anime style** - 青年漫画风格（成熟、细腻）
+9. **kyoto animation style** - 京都动画风格（精致、柔和）
+10. **makoto shinkai style** - 新海诚风格（唯美、光影）
+
+## 要求
+
+1. **提取所有主要角色**：包括主角、配角
+
+2. **角色描述公式（重要！）**：
+   - **appearance**: 年龄 + 性别 + 头发颜色/长短 + 面部特征
+   - **clothing**: 衣服颜色/款式/长短 + 裤子/裙子颜色/款式 + 鞋子（如适用）
+   - 例如：
+     - appearance: "young man, black short hair, sharp eyes, calm demeanor"
+     - clothing: "simple gray robe, traditional healer attire, cloth shoes"
+
+3. **风格选择准确**：根据小说类型选择最合适的动漫风格
+
+4. **英文描述**：所有appearance、clothing、color_tone、lighting必须英文
+
+5. **详细具体**：
+   - appearance: 20-30词，包含年龄、性别、发型、面部特征
+   - clothing: 20-30词，包含上衣、下装、鞋子的颜色和款式
+
+**只输出JSON，不要解释。**

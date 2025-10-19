@@ -1,0 +1,219 @@
+{% extends "base.html" %}
+
+{% block title %}创建任务 - 短剧AI生成系统{% endblock %}
+
+{% block extra_css %}
+<style>
+    h2 {
+        font-size: 1.8em;
+        margin-bottom: 30px;
+        color: #e8eaed;
+        font-weight: 600;
+    }
+    
+    small {
+        display: block;
+        margin-top: 8px;
+        font-size: 0.88em;
+        color: #9ca3af;
+    }
+    
+    .stats {
+        display: inline-flex;
+        gap: 20px;
+        margin-top: 8px;
+    }
+    
+    .stat-item {
+        color: #6366f1;
+        font-weight: 500;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div id="app">
+    <h2>创建新任务</h2>
+    
+    <div id="alert" style="display: none;"></div>
+    
+    <form id="taskForm">
+        <div class="form-group">
+            <label for="project_name">项目名称 *</label>
+            <input type="text" id="project_name" name="project_name" required 
+                   placeholder="自动生成或手动输入">
+            <small>只能包含字母、数字、下划线（会自动从小说标题生成）</small>
+        </div>
+        
+        <div class="form-group">
+            <label for="timbre">选择音色</label>
+            <select id="timbre" name="timbre">
+                <option value="">加载中...</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="novel_text">小说文本 *</label>
+            <textarea id="novel_text" name="novel_text" required 
+                      placeholder="输入小说内容...&#10;&#10;建议200字以内，系统会自动分句生成分镜。"></textarea>
+            <small>
+                <span class="stats">
+                    <span>字数: <span id="charCount" class="stat-item">0</span></span>
+                    <span>预计分镜: <span id="sceneCount" class="stat-item">0</span>个</span>
+                    <span>预计时长: <span id="estimatedTime" class="stat-item">0</span>分钟</span>
+                </span>
+            </small>
+        </div>
+        
+        <button type="submit" class="btn" id="submitBtn">
+            🚀 创建任务
+        </button>
+    </form>
+</div>
+
+<script>
+// 加载音色列表
+fetch('/api/timbres')
+    .then(res => res.json())
+    .then(timbres => {
+        const select = document.getElementById('timbre');
+        select.innerHTML = '<option value="">默认音色</option>';
+        timbres.forEach(timbre => {
+            const option = document.createElement('option');
+            option.value = timbre;
+            option.textContent = timbre;
+            select.appendChild(option);
+        });
+    });
+
+// 清理项目名称（移除标点符号）
+function cleanProjectName(text) {
+    if (!text) return '';
+    
+    // 移除所有标点符号和空格
+    let cleaned = text.replace(/[，。！？、；：""''（）《》【】\s,\.!?\-:;'"()\[\]{}<>]/g, '');
+    
+    // 如果清理后为空或太短，使用时间戳
+    if (cleaned.length < 2) {
+        const timestamp = Date.now().toString().slice(-6);
+        cleaned = `novel_${timestamp}`;
+    }
+    
+    return cleaned;
+}
+
+// 自动生成项目名称
+function generateProjectName(text) {
+    if (!text || text.length < 5) return '';
+    
+    // 取前10个字符作为项目名
+    let name = text.substring(0, 10);
+    
+    // 清理标点符号
+    name = cleanProjectName(name);
+    
+    return name;
+}
+
+// 实时统计和自动生成项目名
+const novelText = document.getElementById('novel_text');
+const projectName = document.getElementById('project_name');
+const charCount = document.getElementById('charCount');
+const sceneCount = document.getElementById('sceneCount');
+const estimatedTime = document.getElementById('estimatedTime');
+
+let autoGenerateName = true;
+
+// 如果用户手动修改了项目名称，停止自动生成
+projectName.addEventListener('input', () => {
+    if (projectName.value.length > 0) {
+        autoGenerateName = false;
+    }
+});
+
+novelText.addEventListener('input', () => {
+    const text = novelText.value;
+    const chars = text.length;
+    
+    // 估算分镜数（按句子分）
+    const sentences = text.split(/[。！？.!?]/).filter(s => s.trim().length > 0).length;
+    
+    // 估算时长（每句约3-5秒）
+    const minutes = Math.ceil(sentences * 4 / 60);
+    
+    charCount.textContent = chars;
+    sceneCount.textContent = sentences;
+    estimatedTime.textContent = minutes;
+    
+    // 自动生成项目名称
+    if (autoGenerateName && text.length >= 5) {
+        projectName.value = generateProjectName(text);
+    }
+});
+
+// 提交表单
+document.getElementById('taskForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const submitBtn = document.getElementById('submitBtn');
+    const alert = document.getElementById('alert');
+    
+    // 获取表单数据
+    let projectNameValue = document.getElementById('project_name').value;
+    
+    // 自动清理项目名称（移除标点符号）
+    projectNameValue = cleanProjectName(projectNameValue);
+    
+    // 如果清理后为空，自动生成
+    if (!projectNameValue) {
+        projectNameValue = generateProjectName(document.getElementById('novel_text').value);
+    }
+    
+    const formData = {
+        project_name: projectNameValue,
+        novel_text: document.getElementById('novel_text').value,
+        timbre: document.getElementById('timbre').value
+    };
+    
+    // 禁用按钮
+    submitBtn.disabled = true;
+    submitBtn.textContent = '创建中...';
+    
+    try {
+        const response = await fetch('/api/create_task', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        });
+        
+        const result = await response.json();
+        
+        if (response.ok) {
+            alert.className = 'alert alert-success';
+            alert.textContent = '✓ ' + result.message + '，正在跳转到任务管理页面...';
+            alert.style.display = 'block';
+            
+            // 清空表单
+            document.getElementById('taskForm').reset();
+            novelText.dispatchEvent(new Event('input'));
+            
+            // 跳转到任务页面
+            setTimeout(() => {
+                window.location.href = '/tasks';
+            }, 1500);
+        } else {
+            throw new Error(result.error || '创建失败');
+        }
+    } catch (error) {
+        alert.className = 'alert alert-error';
+        alert.textContent = '❌ ' + error.message;
+        alert.style.display = 'block';
+    } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = '🚀 创建任务';
+    }
+});
+</script>
+{% endblock %}

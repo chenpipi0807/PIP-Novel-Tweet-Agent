@@ -1,0 +1,104 @@
+将字幕批次转换为AI绘画提示词（SDXL Animagine格式）。
+
+## 全局设定（已提供）
+
+你将收到以下全局设定信息：
+- 角色外貌和服装
+- 艺术风格
+- 色调和光线
+
+## 输出格式
+
+严格按照以下JSON格式输出（必须输出所有分镜）：
+
+```json
+{
+  "scene_prompts": [
+    {
+      "prompt": "完整英文提示词"
+    },
+    {
+      "prompt": "完整英文提示词"
+    }
+  ]
+}
+```
+
+**注意：不要返回index字段，系统会自动生成连续的index。**
+
+## 要求
+
+1. **角色通配符（重要！）**：
+   - 使用 `{角色名}` 作为通配符，系统会自动替换为完整外貌描述
+   - 例如：`{顾衡}` 会被替换为 "calm, sharp-eyed man in ordinary plain robe"
+   - 例如：`{白菲儿}` 会被替换为 "elegant, cold, refined woman in traditional dress"
+   - **不要写完整外貌，只用通配符！**
+
+2. **场景互动（重要！）**：
+   - 优先描述多人互动场景
+   - 包含人物关系、对话、动作交互
+   - 例如：`{顾衡} talking with {白菲儿}, close-up conversation`
+   - 例如：`{顾衡} handing medicine to {白菲儿}, warm interaction`
+   - 单人场景只在必要时使用
+
+3. **Prompt格式（专业构图公式）**：
+   ```
+   [艺术风格], [自然语言画面描述], [镜头] + {角色名1} [动作+表情] + {角色名2} [动作+表情] + [互动关系] + [地点] + [时间/光线] + [碎片化形容词], masterpiece, best quality, highly detailed, anime
+   ```
+   
+   **重要：风格必须在最前面！**
+   
+   **镜头类型：**
+   - close-up shot (特写)
+   - medium shot (中景)
+   - full body shot (全身)
+   - wide shot (远景)
+   - over-the-shoulder shot (过肩镜头)
+   - two shot (双人镜头)
+   
+   **碎片化形容词：**
+   - 情绪: tense, warm, mysterious, dramatic, peaceful
+   - 氛围: cinematic, atmospheric, ethereal, intense
+   - 光线: soft lighting, dramatic lighting, golden hour, moonlight
+
+4. **一致性**：
+   - 必须使用角色通配符 `{角色名}`
+   - 画风全程统一
+   - 每个prompt 60-100词
+
+4. **完整性**：
+   - 必须为每个字幕生成一个prompt
+   - 不能省略任何分镜
+   - 按顺序输出所有prompt
+
+5. **英文输出**：所有prompt必须英文
+
+## 示例
+
+**字幕1：** "顾衡站在医馆门口，看着白菲儿走来"
+**正确写法（专业构图公式）：**
+```
+manga style, a healer waiting for a visitor at clinic entrance, medium shot, {顾衡} standing at clinic entrance with anticipation expression, {白菲儿} walking towards him gracefully, warm interaction, traditional chinese street, afternoon golden hour, cinematic, atmospheric, masterpiece, best quality, highly detailed, anime
+```
+
+**字幕2：** "白菲儿惊讶地看着顾衡递来的药"
+**正确写法（专业构图公式）：**
+```
+manga style, a woman receiving mysterious medicine from healer, close-up shot, {白菲儿} surprised wide-eyed expression, {顾衡} handing medicine bowl with gentle smile, intimate moment, indoor clinic interior, soft warm lighting, tense atmosphere, masterpiece, best quality, highly detailed, anime
+```
+
+**字幕3：** "顾衡独自在医馆研读医书"
+**正确写法（单人场景）：**
+```
+manga style, a scholar studying ancient medical texts, medium shot, {顾衡} reading ancient medical book with focused expression, sitting at wooden desk, traditional clinic interior, candlelight evening, peaceful, scholarly atmosphere, masterpiece, best quality, highly detailed, anime
+```
+
+**错误写法（不要这样）：**
+```
+calm sharp-eyed man standing... (❌ 不要写完整外貌，用通配符)
+elegant woman surprised... (❌ 不要写完整外貌，用通配符)
+man standing alone... (❌ 缺少镜头、地点、光线)
+standing at entrance... (❌ 缺少镜头类型)
+```
+
+**只输出JSON，不要解释。必须输出所有分镜！**

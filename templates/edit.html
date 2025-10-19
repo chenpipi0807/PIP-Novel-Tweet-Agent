@@ -1,0 +1,157 @@
+{% extends "base.html" %}
+
+{% block title %}编辑提示词 - {{ project_name }}{% endblock %}
+
+{% block content %}
+<div id="app">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+        <h2 style="color: #495057;">编辑提示词 - {{ project_name }}</h2>
+        <button class="btn" onclick="savePrompts()">💾 保存修改</button>
+    </div>
+    
+    <div id="alert" style="display: none;"></div>
+    
+    <div id="promptsList"></div>
+</div>
+
+<style>
+    .prompt-card {
+        background: #f8f9fa;
+        border-radius: 12px;
+        padding: 20px;
+        margin-bottom: 20px;
+        border-left: 5px solid #667eea;
+    }
+    
+    .prompt-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+    }
+    
+    .prompt-index {
+        font-size: 1.2em;
+        font-weight: 600;
+        color: #667eea;
+    }
+    
+    .prompt-textarea {
+        width: 100%;
+        min-height: 100px;
+        padding: 12px;
+        border: 2px solid #e9ecef;
+        border-radius: 8px;
+        font-family: monospace;
+        font-size: 0.95em;
+        resize: vertical;
+    }
+    
+    .prompt-textarea:focus {
+        outline: none;
+        border-color: #667eea;
+    }
+    
+    .char-count {
+        text-align: right;
+        font-size: 0.9em;
+        color: #6c757d;
+        margin-top: 5px;
+    }
+</style>
+
+<script>
+let promptsData = null;
+
+async function loadPrompts() {
+    try {
+        const response = await fetch('/api/prompts/{{ project_name }}');
+        promptsData = await response.json();
+        
+        const promptsList = document.getElementById('promptsList');
+        
+        if (!promptsData.scene_prompts || promptsData.scene_prompts.length === 0) {
+            promptsList.innerHTML = '<div class="alert alert-info">暂无提示词数据</div>';
+            return;
+        }
+        
+        promptsList.innerHTML = promptsData.scene_prompts.map((scene, idx) => `
+            <div class="prompt-card">
+                <div class="prompt-header">
+                    <div class="prompt-index">分镜 ${scene.index}</div>
+                </div>
+                <textarea 
+                    class="prompt-textarea" 
+                    id="prompt-${idx}"
+                    data-index="${idx}"
+                    oninput="updateCharCount(${idx})"
+                >${scene.prompt}</textarea>
+                <div class="char-count" id="count-${idx}">
+                    ${scene.prompt.length} 字符
+                </div>
+            </div>
+        `).join('');
+        
+    } catch (error) {
+        document.getElementById('promptsList').innerHTML = 
+            `<div class="alert alert-error">加载失败: ${error.message}</div>`;
+    }
+}
+
+function updateCharCount(idx) {
+    const textarea = document.getElementById(`prompt-${idx}`);
+    const count = document.getElementById(`count-${idx}`);
+    count.textContent = `${textarea.value.length} 字符`;
+}
+
+async function savePrompts() {
+    const alert = document.getElementById('alert');
+    
+    try {
+        // 更新promptsData
+        promptsData.scene_prompts.forEach((scene, idx) => {
+            const textarea = document.getElementById(`prompt-${idx}`);
+            scene.prompt = textarea.value;
+        });
+        
+        // 保存
+        const response = await fetch('/api/prompts/{{ project_name }}', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(promptsData)
+        });
+        
+        const result = await response.json();
+        
+        if (response.ok) {
+            alert.className = 'alert alert-success';
+            alert.textContent = '✓ ' + result.message;
+            alert.style.display = 'block';
+            
+            setTimeout(() => {
+                alert.style.display = 'none';
+            }, 3000);
+        } else {
+            throw new Error(result.error || '保存失败');
+        }
+    } catch (error) {
+        alert.className = 'alert alert-error';
+        alert.textContent = '❌ ' + error.message;
+        alert.style.display = 'block';
+    }
+}
+
+// 加载提示词
+loadPrompts();
+
+// 快捷键保存 (Ctrl+S)
+document.addEventListener('keydown', (e) => {
+    if (e.ctrlKey && e.key === 's') {
+        e.preventDefault();
+        savePrompts();
+    }
+});
+</script>
+{% endblock %}
