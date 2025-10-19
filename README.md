@@ -58,7 +58,20 @@ cd PIP_Agent
 pip install -r requirements.txt
 ```
 
-3. **下载模型**
+3. **安装 FFmpeg**
+
+FFmpeg 用于视频合成，需要单独安装：
+
+```bash
+# 自动安装（Windows）
+python tools/install_ffmpeg.py
+
+# 或手动下载并解压到 ffmpeg/bin/ 目录
+```
+
+详细安装说明请查看 [INSTALL_FFMPEG.md](INSTALL_FFMPEG.md)
+
+4. **下载模型**
 
 运行以下脚本自动下载所需模型：
 
@@ -72,11 +85,13 @@ python download_dmd2.py
 
 模型将保存到 `sdxl/models/` 目录。
 
-4. **配置 API Key**
+5. **配置 API Key**
 
-在 `main.py` 中配置 Kimi API Key：
-```python
-KIMI_API_KEY = "your_api_key_here"
+在 `config.json` 中配置 Kimi API Key：
+```json
+{
+  "kimi_api_key": "sk-your-kimi-api-key"
+}
 ```
 
 ### 使用方法
