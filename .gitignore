@@ -1,53 +1,61 @@
-# # 模型文件（太大，不上传）
-# sdxl/models/
-# *.safetensors
-# *.ckpt
-# *.pth
-# *.bin
+# 模型文件（太大，不上传）
+sdxl/models/
+*.safetensors
+*.ckpt
+*.pth
+*.bin
 
-# # FFmpeg 二进制文件（太大，用户需自行安装）
-# ffmpeg/bin/*.exe
-# ffmpeg/bin/*.dll
+# FFmpeg 二进制文件（太大，用户需自行安装）
+ffmpeg/bin/
 
-# # 项目输出文件
-# projects/*/Audio/*.mp3
-# projects/*/Audio/*.wav
-# projects/*/Imgs/*.png
-# projects/*/Imgs/*.jpg
-# projects/*/Videos/*.mp4
+# Index-TTS 模型文件
+index-tts/
+models/
 
-# # 临时文件
-# temp/
-# __pycache__/
-# *.pyc
-# *.pyo
-# *.pyd
-# .Python
-# *.so
-# *.egg
-# *.egg-info/
-# dist/
-# build/
+# 项目输出文件
+projects/*/Audio/*.mp3
+projects/*/Audio/*.wav
+projects/*/Imgs/*.png
+projects/*/Imgs/*.jpg
+projects/*/Videos/*.mp4
 
-# # IDE 配置
-# .vscode/
-# .idea/
-# *.swp
-# *.swo
-# *~
+# Timbre 音色文件（太大）
+Timbre/
 
-# # 系统文件
-# .DS_Store
-# Thumbs.db
-# desktop.ini
+# 临时文件
+temp/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
 
-# # 日志文件
-# *.log
+# IDE 配置
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
 
-# # 环境变量
-# .env
-# venv/
-# env/
+# 系统文件
+.DS_Store
+Thumbs.db
+desktop.ini
 
-# # 测试文件
-# test_*.py
+# 日志文件
+*.log
+
+# 环境变量
+.env
+venv/
+env/
+
+# 测试文件
+test_*.py
+test.txt
+test_novel.txt
