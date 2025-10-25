@@ -1,0 +1,99 @@
+{
+  "story_metadata": {
+    "title": "穿成修仙文里的炉鼎女配后，我摆烂了",
+    "genre": "玄幻",
+    "theme_tags": [
+      "修仙",
+      "女配",
+      "逆袭"
+    ]
+  },
+  "global_settings": {
+    "characters": [
+      {
+        "name": "炉鼎女配（我）",
+        "appearance": "young woman in her 20s, black long hair",
+        "clothing": "blue long-sleeved dress, black long pants, black boots"
+      },
+      {
+        "name": "师尊",
+        "appearance": "middle-aged man, black long hair",
+        "clothing": "white long-sleeved robe, black long pants, black cloth shoes"
+      }
+    ]
+  },
+  "scene_prompts": [
+    {
+      "prompt": "{炉鼎女配} ignoring system, middle-aged man, black long hair, white long-sleeved robe, black long pants, black cloth shoes standing, white background",
+      "index": 1
+    },
+    {
+      "prompt": "{炉鼎女配} selling法宝, eating, street with food stalls",
+      "index": 2
+    },
+    {
+      "prompt": "middle-aged man, black long hair, white long-sleeved robe, black long pants, black cloth shoes furious, {炉鼎女配} surprised, sect hall, storm brewing",
+      "index": 3
+    },
+    {
+      "prompt": "middle-aged man, black long hair, white long-sleeved robe, black long pants, black cloth shoes battling inner demons, {炉鼎女配} eating fruits, dark background",
+      "index": 4
+    },
+    {
+      "prompt": "{炉鼎女配} holding tea, walking, middle-aged man, black long hair, white long-sleeved robe, black long pants, black cloth shoes meditating, cultivation cave",
+      "index": 5
+    },
+    {
+      "prompt": "{我} receiving task, white background",
+      "index": 6
+    },
+    {
+      "prompt": "{我} holding tea, contemplating, cultivation cave",
+      "index": 7
+    },
+    {
+      "prompt": "{我} rejecting plot, determination, sect hall",
+      "index": 8
+    },
+    {
+      "prompt": "{我} exchanging sword for feast, inn interior, luxurious table",
+      "index": 9
+    },
+    {
+      "prompt": "{我} eating lavishly, full of energy, inn interior, luxurious table",
+      "index": 10
+    },
+    {
+      "prompt": "middle-aged man, black long hair, white long-sleeved robe, black long pants, black cloth shoes exploding from cave, {炉鼎女配} watching, cultivation cave",
+      "index": 11
+    },
+    {
+      "prompt": "middle-aged man, black long hair, white long-sleeved robe, black long pants, black cloth shoes furious, {炉鼎女配} flinching, sect hall",
+      "index": 12
+    },
+    {
+      "prompt": "middle-aged man, black long hair, white long-sleeved robe, black long pants, black cloth shoes commanding, {炉鼎女配} hiding, sect hall",
+      "index": 13
+    },
+    {
+      "prompt": "middle-aged man, black long hair, white long-sleeved robe, black long pants, black cloth shoes observing, thunderstorm gathering, sky",
+      "index": 14
+    },
+    {
+      "prompt": "middle-aged man, black long hair, white long-sleeved robe, black long pants, black cloth shoes meditating, battling inner demons, cultivation cave",
+      "index": 15
+    },
+    {
+      "prompt": "middle-aged man, black long hair, white long-sleeved robe, black long pants, black cloth shoes spitting blood, shocked, {炉鼎女配} concerned, cultivation cave",
+      "index": 16
+    },
+    {
+      "prompt": "{炉鼎女配} eating peach, satisfied, heart magic realm, white background",
+      "index": 17
+    },
+    {
+      "prompt": "{炉鼎女配} burping, middle-aged man, black long hair, white long-sleeved robe, black long pants, black cloth shoes looking at her, cultivation cave",
+      "index": 18
+    }
+  ]
+}

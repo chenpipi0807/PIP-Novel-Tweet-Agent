@@ -690,10 +690,12 @@ def AgentWorkspacePage():
         return html.div({"class": "card"},
             html.h4({}, "生成内容预览"),
             html.div({"class": "grid", "style": {"gridTemplateColumns": "repeat(3, 1fr)", "gap": "8px"}}, items),
-            html.div({"style": {"display": "flex", "justifyContent": "flex-end", "gap": "8px", "marginTop": "8px"}},
-                html.span({}, f"第 {page}/{total_pages} 页，共 {total} 张"),
-                html.button({"class": "btn", "type": "button", "on_click": lambda e: (print("[前端] 用户点击：预览图片上一页"), set_img_page(max(1, page-1)))}, "上一页"),
-                html.button({"class": "btn", "type": "button", "on_click": lambda e: (print("[前端] 用户点击：预览图片下一页"), set_img_page(min(total_pages, page+1)))}, "下一页")
+            html.div({"style": {"display": "flex", "justifyContent": "space-between", "alignItems": "center", "marginTop": "8px"}},
+                html.span({"style": {"fontSize": "13px", "color": "#9ca3af"}}, f"第 {page}/{total_pages} 页，共 {total} 张"),
+                html.div({"style": {"display": "flex", "gap": "6px"}},
+                    html.button({"class": "btn", "type": "button", "on_click": lambda e: (print("[前端] 用户点击：预览图片上一页"), set_img_page(max(1, page-1))), "style": {"padding": "4px 12px", "fontSize": "13px"}}, "上一页"),
+                    html.button({"class": "btn", "type": "button", "on_click": lambda e: (print("[前端] 用户点击：预览图片下一页"), set_img_page(min(total_pages, page+1))), "style": {"padding": "4px 12px", "fontSize": "13px"}}, "下一页")
+                )
             )
         )
 
@@ -736,7 +738,7 @@ def AgentWorkspacePage():
         return [t for t in items if match(t)]
 
     return html.div({"class": "content"},
-        html.div({"class": "grid", "style": {"gridTemplateColumns": "260px 3fr 1fr", "alignItems": "start", "gap": "20px"}},
+        html.div({"class": "grid", "style": {"gridTemplateColumns": "240px 1fr 320px", "alignItems": "start", "gap": "16px"}},
             # left: task list
             html.div({"class": "card leftbar"},
                 html.h4({}, "任务列表"),
@@ -759,12 +761,12 @@ def AgentWorkspacePage():
                 )
             ),
             # middle: chat panel
-            html.div({"class": "card", "style": {"display": "flex", "flexDirection": "column", "minHeight": "70vh"}},
+            html.div({"class": "card", "style": {"display": "flex", "flexDirection": "column", "minHeight": "70vh", "maxHeight": "85vh", "position": "relative"}},
                 html.div({"class": "chat-header"},
                     html.h3({}, "Agent 智能对话"),
                     (project_name and html.span({"class": "badge"}, project_name)) or None
                 ),
-                html.ul({"id": "agent-messages", "data-task": sel_task_id or "", "data-sse": "off", "class": "chat-list", "style": {"flex": 1}}, [*([chat_item(m) for m in messages]), (typing and html.li({"class": "tl-step"}, "正在思考…")) or None]),
+                html.ul({"id": "agent-messages", "data-task": sel_task_id or "", "data-sse": "off", "class": "chat-list", "style": {"flex": 1, "overflowY": "auto", "marginBottom": "12px"}}, [*([chat_item(m) for m in messages]), (typing and html.li({"class": "tl-step"}, "正在思考…")) or None]),
                 html.div({"class": "chat-input", "key": "chat-input-container"},
                     html.textarea({
                         "id": "chat-input-box", 

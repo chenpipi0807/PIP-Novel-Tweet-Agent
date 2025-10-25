@@ -699,12 +699,12 @@ def send_agent_message(task_id):
         print(f"⚠️ 任务不存在: {task_id}")
         return jsonify({'success': False, 'error': '任务不存在'}), 404
     
+    # 允许已完成的任务继续接收优化指令
     if task.status == 'completed':
-        print(f"⚠️ 任务已完成，无法继续。请创建新任务。")
-        return jsonify({
-            'success': False, 
-            'error': '任务已完成，Agent模式不支持继续优化。如需重新生成，请创建新任务。'
-        }), 400
+        print(f"💡 任务已完成，但允许继续优化...")
+        # 重新激活任务
+        task.status = 'running'
+        task.current_step = '等待用户指令...'
     
     # 存储用户消息到内存
     if task_id not in user_messages:

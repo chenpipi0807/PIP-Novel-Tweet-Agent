@@ -1,0 +1,583 @@
+{
+  "total_duration": 107.43466666666669,
+  "total_parent_scenes": 18,
+  "total_child_scenes": 46,
+  "parent_scenes": [
+    {
+      "parent_index": 1,
+      "text": "穿成修仙文里的炉鼎女配后，我摆烂了系统让我按照剧情讨好师尊，助他飞升。",
+      "start_time": 0.0,
+      "end_time": 8.575999999999999,
+      "duration": 8.575999999999999,
+      "children": [
+        {
+          "child_index": 1,
+          "text": "穿成修仙文里的炉鼎女配后，",
+          "tts_text": "穿成修仙文里的炉鼎女配后",
+          "filename": "炉鼎女配摆烂记_0001.wav",
+          "start_time": 0.0,
+          "end_time": 3.84,
+          "duration": 3.84
+        },
+        {
+          "child_index": 2,
+          "text": "我摆烂了系统让我按照剧情讨好师尊，",
+          "tts_text": "我摆烂了系统让我按照剧情讨好师尊",
+          "filename": "炉鼎女配摆烂记_0002.wav",
+          "start_time": 3.84,
+          "end_time": 7.167999999999999,
+          "duration": 3.328
+        },
+        {
+          "child_index": 3,
+          "text": "助他飞升。",
+          "tts_text": "助他飞升",
+          "filename": "炉鼎女配摆烂记_0003.wav",
+          "start_time": 7.167999999999999,
+          "end_time": 8.575999999999999,
+          "duration": 1.408
+        }
+      ]
+    },
+    {
+      "parent_index": 2,
+      "text": "我反手就把他的本命法宝当了灵石，下山吃了三天三夜。",
+      "start_time": 8.575999999999999,
+      "end_time": 14.591999999999999,
+      "duration": 6.016,
+      "children": [
+        {
+          "child_index": 4,
+          "text": "我反手就把他的本命法宝当了灵石，",
+          "tts_text": "我反手就把他的本命法宝当了灵石",
+          "filename": "炉鼎女配摆烂记_0004.wav",
+          "start_time": 8.575999999999999,
+          "end_time": 11.946666666666665,
+          "duration": 3.3706666666666667
+        },
+        {
+          "child_index": 5,
+          "text": "下山吃了三天三夜。",
+          "tts_text": "下山吃了三天三夜",
+          "filename": "炉鼎女配摆烂记_0005.wav",
+          "start_time": 11.946666666666665,
+          "end_time": 14.591999999999999,
+          "duration": 2.6453333333333333
+        }
+      ]
+    },
+    {
+      "parent_index": 3,
+      "text": "师尊震怒出关，却发现天劫提前降临。",
+      "start_time": 14.591999999999999,
+      "end_time": 19.242666666666665,
+      "duration": 4.650666666666666,
+      "children": [
+        {
+          "child_index": 6,
+          "text": "师尊震怒出关，",
+          "tts_text": "师尊震怒出关",
+          "filename": "炉鼎女配摆烂记_0006.wav",
+          "start_time": 14.591999999999999,
+          "end_time": 16.810666666666666,
+          "duration": 2.2186666666666666
+        },
+        {
+          "child_index": 7,
+          "text": "却发现天劫提前降临。",
+          "tts_text": "却发现天劫提前降临",
+          "filename": "炉鼎女配摆烂记_0007.wav",
+          "start_time": 16.810666666666666,
+          "end_time": 19.242666666666665,
+          "duration": 2.432
+        }
+      ]
+    },
+    {
+      "parent_index": 4,
+      "text": "而他心魔里，全是我啃灵果的模样。",
+      "start_time": 19.242666666666665,
+      "end_time": 23.04,
+      "duration": 3.7973333333333343,
+      "children": [
+        {
+          "child_index": 8,
+          "text": "而他心魔里，",
+          "tts_text": "而他心魔里",
+          "filename": "炉鼎女配摆烂记_0008.wav",
+          "start_time": 19.242666666666665,
+          "end_time": 20.82133333333333,
+          "duration": 1.5786666666666667
+        },
+        {
+          "child_index": 9,
+          "text": "全是我啃灵果的模样。",
+          "tts_text": "全是我啃灵果的模样",
+          "filename": "炉鼎女配摆烂记_0009.wav",
+          "start_time": 20.82133333333333,
+          "end_time": 23.04,
+          "duration": 2.2186666666666666
+        }
+      ]
+    },
+    {
+      "parent_index": 5,
+      "text": "“去，将这盏凝神茶送至师尊闭关处。",
+      "start_time": 23.04,
+      "end_time": 27.47733333333333,
+      "duration": 4.437333333333331,
+      "children": [
+        {
+          "child_index": 10,
+          "text": "“去，",
+          "tts_text": "“去",
+          "filename": "炉鼎女配摆烂记_0010.wav",
+          "start_time": 23.04,
+          "end_time": 23.594666666666665,
+          "duration": 0.5546666666666666
+        },
+        {
+          "child_index": 11,
+          "text": "将这盏凝神茶送至师尊闭关处。",
+          "tts_text": "将这盏凝神茶送至师尊闭关处",
+          "filename": "炉鼎女配摆烂记_0011.wav",
+          "start_time": 23.594666666666665,
+          "end_time": 27.47733333333333,
+          "duration": 3.8826666666666667
+        }
+      ]
+    },
+    {
+      "parent_index": 6,
+      "text": "”系统冷冰冰地发布任务，“务必让他感受到你的关切。",
+      "start_time": 27.47733333333333,
+      "end_time": 32.29866666666666,
+      "duration": 4.821333333333332,
+      "children": [
+        {
+          "child_index": 12,
+          "text": "”系统冷冰冰地发布任务，",
+          "tts_text": "”系统冷冰冰地发布任务",
+          "filename": "炉鼎女配摆烂记_0012.wav",
+          "start_time": 27.47733333333333,
+          "end_time": 29.695999999999998,
+          "duration": 2.2186666666666666
+        },
+        {
+          "child_index": 13,
+          "text": "“务必让他感受到你的关切。",
+          "tts_text": "“务必让他感受到你的关切",
+          "filename": "炉鼎女配摆烂记_0013.wav",
+          "start_time": 29.695999999999998,
+          "end_time": 32.29866666666666,
+          "duration": 2.6026666666666665
+        }
+      ]
+    },
+    {
+      "parent_index": 7,
+      "text": "”我低头看了看手里那杯氤氲着灵气的茶，又想了想原著里我这个炉鼎女配的结局被榨干修为，魂飞魄散。",
+      "start_time": 32.29866666666666,
+      "end_time": 42.70933333333333,
+      "duration": 10.410666666666671,
+      "children": [
+        {
+          "child_index": 14,
+          "text": "”我低头看了看手里那杯氤氲着灵气的茶，",
+          "tts_text": "”我低头看了看手里那杯氤氲着灵气的茶",
+          "filename": "炉鼎女配摆烂记_0014.wav",
+          "start_time": 32.29866666666666,
+          "end_time": 36.138666666666666,
+          "duration": 3.84
+        },
+        {
+          "child_index": 15,
+          "text": "又想了想原著里我这个炉鼎女配的结局被榨干修为，",
+          "tts_text": "又想了想原著里我这个炉鼎女配的结局被榨干修为",
+          "filename": "炉鼎女配摆烂记_0015.wav",
+          "start_time": 36.138666666666666,
+          "end_time": 41.17333333333333,
+          "duration": 5.034666666666666
+        },
+        {
+          "child_index": 16,
+          "text": "魂飞魄散。",
+          "tts_text": "魂飞魄散",
+          "filename": "炉鼎女配摆烂记_0016.wav",
+          "start_time": 41.17333333333333,
+          "end_time": 42.70933333333333,
+          "duration": 1.536
+        }
+      ]
+    },
+    {
+      "parent_index": 8,
+      "text": "去他的剧情。",
+      "start_time": 42.70933333333333,
+      "end_time": 44.288,
+      "duration": 1.5786666666666633,
+      "children": [
+        {
+          "child_index": 17,
+          "text": "去他的剧情。",
+          "tts_text": "去他的剧情",
+          "filename": "炉鼎女配摆烂记_0017.wav",
+          "start_time": 42.70933333333333,
+          "end_time": 44.288,
+          "duration": 1.5786666666666667
+        }
+      ]
+    },
+    {
+      "parent_index": 9,
+      "text": "我转身下山，直奔最大的酒楼，用师尊那柄温养了百年的本命灵剑“霜华”，换了一桌顶级灵膳，外加三千上品灵石。",
+      "start_time": 44.288,
+      "end_time": 56.959999999999994,
+      "duration": 12.671999999999997,
+      "children": [
+        {
+          "child_index": 18,
+          "text": "我转身下山，",
+          "tts_text": "我转身下山",
+          "filename": "炉鼎女配摆烂记_0018.wav",
+          "start_time": 44.288,
+          "end_time": 46.08,
+          "duration": 1.792
+        },
+        {
+          "child_index": 19,
+          "text": "直奔最大的酒楼，",
+          "tts_text": "直奔最大的酒楼",
+          "filename": "炉鼎女配摆烂记_0019.wav",
+          "start_time": 46.08,
+          "end_time": 48.34133333333333,
+          "duration": 2.2613333333333334
+        },
+        {
+          "child_index": 20,
+          "text": "用师尊那柄温养了百年的本命灵剑“霜华”，",
+          "tts_text": "用师尊那柄温养了百年的本命灵剑“霜华”",
+          "filename": "炉鼎女配摆烂记_0020.wav",
+          "start_time": 48.34133333333333,
+          "end_time": 52.608,
+          "duration": 4.266666666666667
+        },
+        {
+          "child_index": 21,
+          "text": "换了一桌顶级灵膳，",
+          "tts_text": "换了一桌顶级灵膳",
+          "filename": "炉鼎女配摆烂记_0021.wav",
+          "start_time": 52.608,
+          "end_time": 54.69866666666666,
+          "duration": 2.0906666666666665
+        },
+        {
+          "child_index": 22,
+          "text": "外加三千上品灵石。",
+          "tts_text": "外加三千上品灵石",
+          "filename": "炉鼎女配摆烂记_0022.wav",
+          "start_time": 54.69866666666666,
+          "end_time": 56.959999999999994,
+          "duration": 2.2613333333333334
+        }
+      ]
+    },
+    {
+      "parent_index": 10,
+      "text": "红烧凰鸟翅清蒸龙鲤脍冰镇玉髓酿我吃得毫无形象，灵气撑得经脉发胀。",
+      "start_time": 56.959999999999994,
+      "end_time": 65.024,
+      "duration": 8.064000000000007,
+      "children": [
+        {
+          "child_index": 23,
+          "text": "红烧凰鸟翅清蒸龙鲤脍冰镇玉髓酿我吃得毫无形象，",
+          "tts_text": "红烧凰鸟翅清蒸龙鲤脍冰镇玉髓酿我吃得毫无形象",
+          "filename": "炉鼎女配摆烂记_0023.wav",
+          "start_time": 56.959999999999994,
+          "end_time": 62.89066666666666,
+          "duration": 5.930666666666666
+        },
+        {
+          "child_index": 24,
+          "text": "灵气撑得经脉发胀。",
+          "tts_text": "灵气撑得经脉发胀",
+          "filename": "炉鼎女配摆烂记_0024.wav",
+          "start_time": 62.89066666666666,
+          "end_time": 65.024,
+          "duration": 2.1333333333333333
+        }
+      ]
+    },
+    {
+      "parent_index": 11,
+      "text": "第三天，师尊闭关的洞府轰然炸开。",
+      "start_time": 65.024,
+      "end_time": 68.992,
+      "duration": 3.9680000000000035,
+      "children": [
+        {
+          "child_index": 25,
+          "text": "第三天，",
+          "tts_text": "第三天",
+          "filename": "炉鼎女配摆烂记_0025.wav",
+          "start_time": 65.024,
+          "end_time": 66.432,
+          "duration": 1.408
+        },
+        {
+          "child_index": 26,
+          "text": "师尊闭关的洞府轰然炸开。",
+          "tts_text": "师尊闭关的洞府轰然炸开",
+          "filename": "炉鼎女配摆烂记_0026.wav",
+          "start_time": 66.432,
+          "end_time": 68.992,
+          "duration": 2.56
+        }
+      ]
+    },
+    {
+      "parent_index": 12,
+      "text": "他须发怒张，威压席卷整个宗门“逆徒！",
+      "start_time": 68.992,
+      "end_time": 73.30133333333333,
+      "duration": 4.309333333333328,
+      "children": [
+        {
+          "child_index": 27,
+          "text": "他须发怒张，",
+          "tts_text": "他须发怒张",
+          "filename": "炉鼎女配摆烂记_0027.wav",
+          "start_time": 68.992,
+          "end_time": 70.656,
+          "duration": 1.664
+        },
+        {
+          "child_index": 28,
+          "text": "威压席卷整个宗门“逆徒！",
+          "tts_text": "威压席卷整个宗门“逆徒",
+          "filename": "炉鼎女配摆烂记_0028.wav",
+          "start_time": 70.656,
+          "end_time": 73.30133333333333,
+          "duration": 2.6453333333333333
+        }
+      ]
+    },
+    {
+      "parent_index": 13,
+      "text": "滚出来受死！",
+      "start_time": 73.30133333333333,
+      "end_time": 74.83733333333333,
+      "duration": 1.5360000000000014,
+      "children": [
+        {
+          "child_index": 29,
+          "text": "滚出来受死！",
+          "tts_text": "滚出来受死",
+          "filename": "炉鼎女配摆烂记_0029.wav",
+          "start_time": 73.30133333333333,
+          "end_time": 74.83733333333333,
+          "duration": 1.536
+        }
+      ]
+    },
+    {
+      "parent_index": 14,
+      "text": "”话音未落，九天之上，雷云竟毫无征兆地开始汇聚，紫电狂舞是他的飞升天劫，提前了！",
+      "start_time": 74.83733333333333,
+      "end_time": 84.56533333333333,
+      "duration": 9.727999999999994,
+      "children": [
+        {
+          "child_index": 30,
+          "text": "”话音未落，",
+          "tts_text": "”话音未落",
+          "filename": "炉鼎女配摆烂记_0030.wav",
+          "start_time": 74.83733333333333,
+          "end_time": 76.24533333333333,
+          "duration": 1.408
+        },
+        {
+          "child_index": 31,
+          "text": "九天之上，",
+          "tts_text": "九天之上",
+          "filename": "炉鼎女配摆烂记_0031.wav",
+          "start_time": 76.24533333333333,
+          "end_time": 77.696,
+          "duration": 1.4506666666666668
+        },
+        {
+          "child_index": 32,
+          "text": "雷云竟毫无征兆地开始汇聚，",
+          "tts_text": "雷云竟毫无征兆地开始汇聚",
+          "filename": "炉鼎女配摆烂记_0032.wav",
+          "start_time": 77.696,
+          "end_time": 80.68266666666666,
+          "duration": 2.986666666666667
+        },
+        {
+          "child_index": 33,
+          "text": "紫电狂舞是他的飞升天劫，",
+          "tts_text": "紫电狂舞是他的飞升天劫",
+          "filename": "炉鼎女配摆烂记_0033.wav",
+          "start_time": 80.68266666666666,
+          "end_time": 83.24266666666666,
+          "duration": 2.56
+        },
+        {
+          "child_index": 34,
+          "text": "提前了！",
+          "tts_text": "提前了",
+          "filename": "炉鼎女配摆烂记_0034.wav",
+          "start_time": 83.24266666666666,
+          "end_time": 84.56533333333333,
+          "duration": 1.3226666666666667
+        }
+      ]
+    },
+    {
+      "parent_index": 15,
+      "text": "师尊脸色骤变，急忙盘膝运功对抗心魔。",
+      "start_time": 84.56533333333333,
+      "end_time": 89.216,
+      "duration": 4.650666666666666,
+      "children": [
+        {
+          "child_index": 35,
+          "text": "师尊脸色骤变，",
+          "tts_text": "师尊脸色骤变",
+          "filename": "炉鼎女配摆烂记_0035.wav",
+          "start_time": 84.56533333333333,
+          "end_time": 86.35733333333333,
+          "duration": 1.792
+        },
+        {
+          "child_index": 36,
+          "text": "急忙盘膝运功对抗心魔。",
+          "tts_text": "急忙盘膝运功对抗心魔",
+          "filename": "炉鼎女配摆烂记_0036.wav",
+          "start_time": 86.35733333333333,
+          "end_time": 89.216,
+          "duration": 2.8586666666666667
+        }
+      ]
+    },
+    {
+      "parent_index": 16,
+      "text": "可下一刻，他猛地喷出一口鲜血，眼神惊骇欲绝。",
+      "start_time": 89.216,
+      "end_time": 94.848,
+      "duration": 5.632000000000005,
+      "children": [
+        {
+          "child_index": 37,
+          "text": "可下一刻，",
+          "tts_text": "可下一刻",
+          "filename": "炉鼎女配摆烂记_0037.wav",
+          "start_time": 89.216,
+          "end_time": 90.66666666666666,
+          "duration": 1.4506666666666668
+        },
+        {
+          "child_index": 38,
+          "text": "他猛地喷出一口鲜血，",
+          "tts_text": "他猛地喷出一口鲜血",
+          "filename": "炉鼎女配摆烂记_0038.wav",
+          "start_time": 90.66666666666666,
+          "end_time": 92.84266666666666,
+          "duration": 2.176
+        },
+        {
+          "child_index": 39,
+          "text": "眼神惊骇欲绝。",
+          "tts_text": "眼神惊骇欲绝",
+          "filename": "炉鼎女配摆烂记_0039.wav",
+          "start_time": 92.84266666666666,
+          "end_time": 94.848,
+          "duration": 2.005333333333333
+        }
+      ]
+    },
+    {
+      "parent_index": 17,
+      "text": "在他最关键的心魔幻境里，没有大道真谛，没有前世今生，只有我抱着比脸还大的蟠桃，啃得汁水横流，满足地咂咂嘴。",
+      "start_time": 94.848,
+      "end_time": 106.83733333333335,
+      "duration": 11.989333333333349,
+      "children": [
+        {
+          "child_index": 40,
+          "text": "在他最关键的心魔幻境里，",
+          "tts_text": "在他最关键的心魔幻境里",
+          "filename": "炉鼎女配摆烂记_0040.wav",
+          "start_time": 94.848,
+          "end_time": 97.32266666666666,
+          "duration": 2.474666666666667
+        },
+        {
+          "child_index": 41,
+          "text": "没有大道真谛，",
+          "tts_text": "没有大道真谛",
+          "filename": "炉鼎女配摆烂记_0041.wav",
+          "start_time": 97.32266666666666,
+          "end_time": 99.11466666666666,
+          "duration": 1.792
+        },
+        {
+          "child_index": 42,
+          "text": "没有前世今生，",
+          "tts_text": "没有前世今生",
+          "filename": "炉鼎女配摆烂记_0042.wav",
+          "start_time": 99.11466666666666,
+          "end_time": 100.992,
+          "duration": 1.8773333333333333
+        },
+        {
+          "child_index": 43,
+          "text": "只有我抱着比脸还大的蟠桃，",
+          "tts_text": "只有我抱着比脸还大的蟠桃",
+          "filename": "炉鼎女配摆烂记_0043.wav",
+          "start_time": 100.992,
+          "end_time": 103.552,
+          "duration": 2.56
+        },
+        {
+          "child_index": 44,
+          "text": "啃得汁水横流，",
+          "tts_text": "啃得汁水横流",
+          "filename": "炉鼎女配摆烂记_0044.wav",
+          "start_time": 103.552,
+          "end_time": 105.21600000000001,
+          "duration": 1.664
+        },
+        {
+          "child_index": 45,
+          "text": "满足地咂咂嘴。",
+          "tts_text": "满足地咂咂嘴",
+          "filename": "炉鼎女配摆烂记_0045.wav",
+          "start_time": 105.21600000000001,
+          "end_time": 106.83733333333335,
+          "duration": 1.6213333333333333
+        }
+      ]
+    },
+    {
+      "parent_index": 18,
+      "text": "“嗝”",
+      "start_time": 106.83733333333335,
+      "end_time": 107.43466666666669,
+      "duration": 0.5973333333333386,
+      "children": [
+        {
+          "child_index": 46,
+          "text": "“嗝”",
+          "tts_text": "“嗝”",
+          "filename": "炉鼎女配摆烂记_0046.wav",
+          "start_time": 106.83733333333335,
+          "end_time": 107.43466666666669,
+          "duration": 0.5973333333333334
+        }
+      ]
+    }
+  ]
+}

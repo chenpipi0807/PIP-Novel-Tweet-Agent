@@ -3,9 +3,10 @@
 > **从小说到视频，一键生成**  
 > 基于 AI Agent 的智能决策系统，自动将小说文本转换为带配音、字幕和运镜效果的短视频
 
-<img width="1398" height="908" alt="image" src="https://github.com/user-attachments/assets/8aac2d61-1c38-4ad0-8c40-7ceefd253f44" />
-<img width="1399" height="585" alt="image" src="https://github.com/user-attachments/assets/b589ff36-ff93-4438-9031-efcc577a063f" />
-<img width="1920" height="2535" alt="screencapture-localhost-5000-project-2025-10-19-23_25_40" src="https://github.com/user-attachments/assets/33ae0599-3a49-4d3d-a0a2-4303bc16fec5" />
+<img width="1896" height="904" alt="image" src="https://github.com/user-attachments/assets/77d8d170-ff23-4778-a779-c2f5c57c6efd" />
+<img width="1865" height="823" alt="image" src="https://github.com/user-attachments/assets/93fc6905-c43b-418a-a468-6dc3269baf50" />
+<img width="1918" height="526" alt="image" src="https://github.com/user-attachments/assets/f844431a-f11c-4828-ae01-2cd828d750da" />
+<img width="1902" height="913" alt="image" src="https://github.com/user-attachments/assets/579b0786-d87f-44df-ba91-e6628f0ba539" />
 
 ## 🆕 最新更新 (v2.0)
 
