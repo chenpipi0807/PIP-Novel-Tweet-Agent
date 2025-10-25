@@ -11,12 +11,13 @@ from concurrent.futures import ThreadPoolExecutor
 
 
 class PromptGenerator:
-    def __init__(self, project_name):
+    def __init__(self, project_name, agent_mode=False):
         self.project_name = project_name
         self.project_dir = Path("projects") / project_name
         self.audio_dir = self.project_dir / "Audio"
         self.subtitle_file = self.audio_dir / "Subtitles.json"
         self.prompts_file = self.project_dir / "Prompts.json"
+        self.agent_mode = agent_mode  # Agent模式标记
         
         # 加载两个PE
         self.pe_metadata = Path("PE") / "novel_to_prompts_metadata.txt"
@@ -34,16 +35,31 @@ class PromptGenerator:
         """
         print("\n[阶段1] 生成全局元数据...")
         
-        # 提取所有字幕文本
-        all_text = "\n".join([sub['text'] for sub in subtitles_data['subtitles']])
+        # 提取所有父分镜文本（如果是新格式）
+        if 'parent_scenes' in subtitles_data:
+            all_text = "\n".join([scene['text'] for scene in subtitles_data['parent_scenes']])
+        else:
+            # 兼容旧格式
+            all_text = "\n".join([sub['text'] for sub in subtitles_data.get('subtitles', [])])
         
         api = KimiAPI()
+        
+        # 将PE作为参考，而不是严格的system prompt
+        user_content = f"""参考以下指导（可灵活调整）：
+
+{self.system_prompt_metadata}
+
+---
+
+小说内容：
+
+{all_text}"""
+        
         messages = [
-            {"role": "system", "content": self.system_prompt_metadata},
-            {"role": "user", "content": f"小说内容：\n\n{all_text}"}
+            {"role": "user", "content": user_content}
         ]
         
-        response = api.chat(messages, model="moonshot-v1-128k", temperature=0.3)
+        response = api.chat(messages, model="moonshot-v1-128k", temperature=0.5)
         
         if not response:
             raise Exception("元数据生成失败")
@@ -57,7 +73,7 @@ class PromptGenerator:
         
         metadata = json.loads(json_str.strip())
         print(f"✓ 元数据生成完成")
-        print(f"  风格: {metadata['global_settings']['art_style']}")
+        print(f"  主题标签: {metadata['story_metadata'].get('theme_tags', [])}")
         print(f"  角色数: {len(metadata['global_settings']['characters'])}")
         
         return metadata
@@ -69,32 +85,44 @@ class PromptGenerator:
         api = KimiAPI()
         expected_count = len(subtitles_batch)
         
-        # 构建消息
+        # 构建消息（不包含风格信息，风格由LoRA控制）
         global_info = f"""
-全局设定：
-- 艺术风格: {metadata['global_settings']['art_style']}
-- 色调: {metadata['global_settings']['color_tone']}
-- 光线: {metadata['global_settings']['lighting']}
-
 角色设定：
 """
         for char in metadata['global_settings']['characters']:
             global_info += f"- {char['name']}: {char['appearance']}, {char['clothing']}\n"
         
+        # 添加故事信息（如果有）
+        if 'story_metadata' in metadata:
+            story = metadata['story_metadata']
+            global_info += f"\n故事类型: {story.get('genre', '未知')}\n"
+        
         subtitles_text = "\n".join([f"{i+1}. {sub['text']}" for i, sub in enumerate(subtitles_batch)])
         
         for retry in range(max_retries):
             try:
+                # 将PE作为参考，而不是严格的system prompt
+                user_content = f"""参考以下指导（可灵活调整）：
+
+{self.system_prompt_batch}
+
+---
+
+{global_info}
+
+请为以下{expected_count}个字幕生成提示词（必须生成{expected_count}个）：
+
+{subtitles_text}"""
+                
                 messages = [
-                    {"role": "system", "content": self.system_prompt_batch},
-                    {"role": "user", "content": f"{global_info}\n\n请为以下{expected_count}个字幕生成提示词（必须生成{expected_count}个）：\n{subtitles_text}"}
+                    {"role": "user", "content": user_content}
                 ]
                 
                 # 使用32k模型，更稳定，并限制输出长度
                 response = api.chat(
                     messages, 
                     model="moonshot-v1-32k", 
-                    temperature=0.3,
+                    temperature=0.5,  # 提高灵活性
                     max_tokens=4000  # 限制输出，防止截断
                 )
                 
@@ -137,15 +165,33 @@ class PromptGenerator:
     def generate_prompts(self, subtitle_file):
         """
         两阶段生成提示词（并发版本）
+        只为父分镜生成提示词（用于生成图片）
         """
         # 读取字幕
         with open(subtitle_file, 'r', encoding='utf-8') as f:
             subtitles_data = json.load(f)
         
-        subtitles = subtitles_data['subtitles']
-        total = len(subtitles)
+        # 判断是新格式还是旧格式
+        if 'parent_scenes' in subtitles_data:
+            # 新格式：只为父分镜生成提示词
+            parent_scenes = subtitles_data['parent_scenes']
+            total = len(parent_scenes)
+            print(f"\n总父分镜数（图片）: {total}")
+            print(f"总子分镜数（字幕）: {subtitles_data.get('total_child_scenes', 0)}")
+            
+            # 转换为统一格式供后续处理
+            subtitles = []
+            for scene in parent_scenes:
+                subtitles.append({
+                    'index': scene['parent_index'],
+                    'text': scene['text']
+                })
+        else:
+            # 旧格式：兼容处理
+            subtitles = subtitles_data.get('subtitles', [])
+            total = len(subtitles)
+            print(f"\n总字幕数: {total}")
         
-        print(f"\n总字幕数: {total}")
         print("采用两阶段并发生成策略")
         
         # 阶段1: 生成元数据
@@ -276,10 +322,10 @@ class PromptGenerator:
         # 显示前3个示例
         print(f"\n前3个分镜示例:")
         for scene in scenes[:3]:
-            print(f"\n  [{scene.get('index')}] {scene.get('subtitle_text', '')}")
-            print(f"  类型: {scene.get('scene_type', 'N/A')}")
-            print(f"  镜头: {scene.get('camera_angle', 'N/A')}")
-            print(f"  提示词: {scene.get('prompt', 'N/A')[:80]}...")
+            subtitle = scene.get('subtitle_text', '')
+            prompt = scene.get('prompt', 'N/A')
+            print(f"\n  [{scene.get('index')}] {subtitle}")
+            print(f"  提示词: {prompt[:80]}..." if len(prompt) > 80 else f"  提示词: {prompt}")
         
         print("\n" + "=" * 70)
 

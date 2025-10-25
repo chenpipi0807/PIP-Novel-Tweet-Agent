@@ -1,0 +1,33 @@
+{
+  "style_presets": [
+    {
+      "id": "novel_tweet_fresh",
+      "name": "小说推文清新画风",
+      "description": "适合小说推文的清新动漫风格",
+      "lora": "小说推文清新画风.safetensors",
+      "lora_weight": 1.0,
+      "prompt_prefix": "(((masterpiece))), ((ultra-detailed)), (((best quality))), illustration, masterpiece, best quality, ultra-detailed",
+      "negative_prompt": "NSFW, (worst quality:2), (low quality:2), (normal quality:2), lowres, normal quality, ((monochrome)), ((grayscale)), skin spots, acnes, skin blemishes, age spot, (ugly:1.331), (duplicate:1.331), (morbid:1.21), (mutilated:1.21), (tranny:1.331), mutated hands, (poorly drawn hands:1.5), blurry, (bad anatomy:1.21), (bad proportions:1.331), extra limbs, (disfigured:1.331), (missing arms:1.331), (extra legs:1.331), (fused fingers:1.61051), (too many fingers:1.61051), (unclear eyes:1.331), lowers, bad hands, missing fingers, extra digit, bad hands, missing fingers, (((extra arms and legs))), nsfw",
+      "recommended_steps": 12,
+      "recommended_cfg": 2.5
+    },
+    {
+      "id": "ancient_heroine_hanfu",
+      "name": "古风女主-汉服",
+      "description": "古风超绝氛围感小说女主，专为古风小说女主角色设计，富有故事性与情感张力",
+      "lora": "XL-古风女主-汉服-小说推文_v1.0.safetensors",
+      "lora_weight": 0.8,
+      "prompt_prefix": "gufengnvzhu, hanfu, chinese clothes, hair ornament, jewelry, long hair, black hair, masterpiece, best quality, ultra-detailed",
+      "negative_prompt": "(Watermark:2), ng_deepnegative_v1_75t, (badhandv4:1.2), EasyNegative, (worst quality:2)",
+      "recommended_steps": 12,
+      "recommended_cfg": 2.5,
+      "sampler": "Euler a",
+      "trigger_words": ["gufengnvzhu", "hanfu", "chinese clothes"],
+      "style_tags": ["古风", "汉服", "女主", "氛围感", "情感张力"],
+      "hires_fix": {
+        "upscaler": "4x-UltraSharp",
+        "denoising_strength": 0.3
+      }
+    }
+  ]
+}

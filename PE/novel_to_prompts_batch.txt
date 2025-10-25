@@ -3,7 +3,8 @@
 ## 全局设定（已提供）
 
 你将收到以下全局设定信息：
-- 角色外貌和服装
+- 角色外貌（面部特征、发型、体型）
+- 角色服装（衣服款式、颜色、配饰）
 - 艺术风格
 - 色调和光线
 
@@ -29,76 +30,149 @@
 ## 要求
 
 1. **角色通配符（重要！）**：
-   - 使用 `{角色名}` 作为通配符，系统会自动替换为完整外貌描述
-   - 例如：`{顾衡}` 会被替换为 "calm, sharp-eyed man in ordinary plain robe"
-   - 例如：`{白菲儿}` 会被替换为 "elegant, cold, refined woman in traditional dress"
-   - **不要写完整外貌，只用通配符！**
+   - 使用 `{角色名}` 作为通配符，系统会自动替换为完整外貌和服装描述
+   - 例如：`{顾衡}` 会被替换为 "calm, sharp-eyed man, short black hair, wearing ordinary plain robe"
+   - 例如：`{白菲儿}` 会被替换为 "elegant, cold woman, long black hair, wearing traditional white dress with blue patterns"
+   - **通配符会包含：面部特征 + 发型 + 服装细节**
+   - **不要写完整外貌和服装，只用通配符！**
 
-2. **场景互动（重要！）**：
+2. **场景生成（必须！）**：
+   
+   **场景格式（固定结构）：**
+   ```
+   [场景类型], [关键物品1], [关键物品2]
+   ```
+   
+   **场景类型示例（根据故事类型自由扩展）：**
+   - 日常室内：kitchen, bedroom, living room, office, classroom, restaurant, cafe, study room
+   - 日常室外：street, park, courtyard, forest, mountain, beach, city square
+   - 工作场所：hospital, clinic, laboratory, workshop, construction site, factory
+   - 古代/历史：palace, temple, ancient tomb, excavation site, archaeological site, museum
+   - 现代科技：laboratory, computer room, broadcast studio, newsroom, control room
+   - 特殊场景：battlefield, sky, underwater, space, fantasy realm
+   - 纯色背景：white background（旁白/思考）, dark background（回忆/阴暗）
+   
+   **⚠️ 重要：根据小说内容自由创造场景，不要局限于示例！**
+   - 考古小说 → archaeological excavation site, ancient tomb interior, museum storage room
+   - 医疗小说 → hospital ward, operating room, emergency room
+   - 校园小说 → classroom, library, sports field, dormitory
+   - 玄幻小说 → cultivation cave, sect hall, immortal palace
+   
+   **关键物品示例（根据场景添加细节）：**
+   - 厨房：stove, cutting board, refrigerator, sink
+   - 卧室：bed, window, nightstand, closet
+   - 街道：buildings, streetlights, cars, sidewalk
+   - 办公室：desk, computer, chair, bookshelf
+   - 考古现场：excavation pit, archaeological tools, ancient artifacts, protective tent, measuring equipment
+   - 古墓内部：stone coffin, bamboo slips, bronze vessels, ancient wall carvings
+   - 实验室：microscope, test tubes, workbench, protective equipment
+   - 直播现场：cameras, microphones, lighting equipment, monitors
+   
+   **重要规则：**
+   - ⚠️ **根据字幕内容自由生成场景**，不要局限于示例
+   - ⚠️ **心理活动/旁白**：使用 white background 或 dark background
+   - ⚠️ **场景可以复用**：连续相关的字幕可以使用同一场景
+   - ⚠️ **所有对话和动作**：必须有具体场景（不能用纯色背景）
+
+3. **角色互动（重要！）**：
    - 优先描述多人互动场景
    - 包含人物关系、对话、动作交互
    - 例如：`{顾衡} talking with {白菲儿}, close-up conversation`
    - 例如：`{顾衡} handing medicine to {白菲儿}, warm interaction`
    - 单人场景只在必要时使用
 
-3. **Prompt格式（专业构图公式）**：
+4. **Prompt格式（极简版）**：
    ```
-   [艺术风格], [自然语言画面描述], [镜头] + {角色名1} [动作+表情] + {角色名2} [动作+表情] + [互动关系] + [地点] + [时间/光线] + [碎片化形容词], masterpiece, best quality, highly detailed, anime
+   {角色名1} [动作], {角色名2} [动作], [场景]
    ```
    
-   **重要：风格必须在最前面！**
+   **核心三要素：**
+   - **谁**：{角色名}（通配符会自动替换为外貌+服装）
+   - **在哪**：场景（2-3个词，如：clinic interior, street）
+   - **干什么**：动作（简短动词，如：standing, talking, reading）
    
-   **镜头类型：**
-   - close-up shot (特写)
-   - medium shot (中景)
-   - full body shot (全身)
-   - wide shot (远景)
-   - over-the-shoulder shot (过肩镜头)
-   - two shot (双人镜头)
+   **重要规则：**
+   - ⚠️ **只写主体+场景+动作，不要其他废话**
+   - 不要写风格、光影、氛围、镜头、质量词
+   - 单人：`{角色名} [动作], [场景]`
+   - 双人：`{角色名1} [动作], {角色名2} [动作], [场景]`
    
-   **碎片化形容词：**
-   - 情绪: tense, warm, mysterious, dramatic, peaceful
-   - 氛围: cinematic, atmospheric, ethereal, intense
-   - 光线: soft lighting, dramatic lighting, golden hour, moonlight
+   **场景示例（简短，2-4个词）：**
+   - 日常室内: clinic interior, study room, kitchen, bedroom, office
+   - 日常室外: street, park, garden, courtyard, city square
+   - 专业场景: archaeological excavation site, ancient tomb interior, broadcast studio, laboratory, museum storage room
+   - 特殊场景: battlefield, sky, underwater, white background, dark background
+   
+   **动作示例（简短）：**
+   - 单人: standing, sitting, reading, walking, fighting
+   - 双人: talking, fighting, handing, looking at each other
 
-4. **一致性**：
+5. **一致性**：
    - 必须使用角色通配符 `{角色名}`
-   - 画风全程统一
-   - 每个prompt 60-100词
+   - **每个prompt极简，只写：主体+动作+场景**
 
-4. **完整性**：
+6. **完整性**：
    - 必须为每个字幕生成一个prompt
    - 不能省略任何分镜
    - 按顺序输出所有prompt
 
-5. **英文输出**：所有prompt必须英文
+7. **英文输出**：所有prompt必须英文
 
-## 示例
+## 示例1：玄幻小说（极简版）
 
-**字幕1：** "顾衡站在医馆门口，看着白菲儿走来"
-**正确写法（专业构图公式）：**
+**字幕1：** "万丈高空，罡风烈烈，原本该是正邪最终对决的舞台"
 ```
-manga style, a healer waiting for a visitor at clinic entrance, medium shot, {顾衡} standing at clinic entrance with anticipation expression, {白菲儿} walking towards him gracefully, warm interaction, traditional chinese street, afternoon golden hour, cinematic, atmospheric, masterpiece, best quality, highly detailed, anime
-```
-
-**字幕2：** "白菲儿惊讶地看着顾衡递来的药"
-**正确写法（专业构图公式）：**
-```
-manga style, a woman receiving mysterious medicine from healer, close-up shot, {白菲儿} surprised wide-eyed expression, {顾衡} handing medicine bowl with gentle smile, intimate moment, indoor clinic interior, soft warm lighting, tense atmosphere, masterpiece, best quality, highly detailed, anime
+{清微剑尊} standing, {殷烬} facing, white background
 ```
 
-**字幕3：** "顾衡独自在医馆研读医书"
-**正确写法（单人场景）：**
+**字幕2：** "我，清微剑尊，与那魔头殷烬已战至力竭"
 ```
-manga style, a scholar studying ancient medical texts, medium shot, {顾衡} reading ancient medical book with focused expression, sitting at wooden desk, traditional clinic interior, candlelight evening, peaceful, scholarly atmosphere, masterpiece, best quality, highly detailed, anime
+{清微剑尊} fighting, {殷烬} attacking, sky battlefield
 ```
 
-**错误写法（不要这样）：**
+**字幕3：** "两柄绝世神兵正正相撞，迸发的威能几乎要撕裂虚空"
 ```
-calm sharp-eyed man standing... (❌ 不要写完整外貌，用通配符)
-elegant woman surprised... (❌ 不要写完整外貌，用通配符)
-man standing alone... (❌ 缺少镜头、地点、光线)
-standing at entrance... (❌ 缺少镜头类型)
+{清微剑尊} clashing swords, {殷烬} blocking, sky battlefield
+```
+
+## 示例2：考古小说（极简版）
+
+**字幕1：** "顾念面无表情地划掉推送，将手机塞回行李袋最底层"
+```
+{顾念} putting phone away, archaeological excavation site, excavation pit
+```
+
+**字幕2：** "新来的临时工？去那边，帮着清理探方里的浮土"
+```
+{老师傅} handing tools, {顾念} receiving, archaeological excavation site, protective tent
+```
+
+**字幕3：** "棺椁开启，内里没有预想的金玉满堂，只有一套腐朽的服饰痕迹"
+```
+{李教授} opening coffin, {工作人员} observing, ancient tomb interior, stone coffin
+```
+
+**字幕4：** "是、是失传的《齐论》佚篇！"
+```
+{李教授} excited, examining bamboo slips, temporary workstation, ancient artifacts
+```
+
+**字幕5：** "顾念下意识地瞥了一眼直播监视屏"
+```
+{顾念} looking at monitor, broadcast studio, cameras, monitors
+```
+
+**字幕6：** "等等！这枚是假的！"
+```
+{顾念} shouting, {李教授} surprised, ancient tomb interior, bamboo slips
+```
+
+**错误写法：**
+```
+❌ manga style, healer waiting... (不要写风格)
+❌ {顾衡} standing with anticipation expression... (不要写表情细节)
+❌ clinic interior with soft lighting... (不要写光线)
+❌ masterpiece, best quality, anime (不要写质量词)
 ```
 
 **只输出JSON，不要解释。必须输出所有分镜！**

@@ -1,4 +1,4 @@
-分析小说内容，提取角色设定和艺术风格（SDXL Animagine格式）。
+分析小说内容，提取角色设定（不要生成风格信息，风格由系统自动选择）。
 
 ## 输出格式
 
@@ -9,7 +9,7 @@
   "story_metadata": {
     "title": "故事标题",
     "genre": "类型（如：都市、玄幻、古风等）",
-    "style": "画风概述"
+    "theme_tags": ["标签1", "标签2", "标签3"]
   },
   "global_settings": {
     "characters": [
@@ -18,44 +18,119 @@
         "appearance": "外貌特征（英文，简洁）",
         "clothing": "服装描述（英文，简洁）"
       }
-    ],
-    "art_style": "艺术风格（从下方列表选择一个）",
-    "color_tone": "整体色调（英文）",
-    "lighting": "光线风格（英文）"
+    ]
   }
 }
 ```
 
-## 动漫风格列表（选择一个最适合的）
+## 重要说明
 
-1. **anime style** - 标准日本动漫风格
-2. **manga style** - 漫画风格
-3. **light novel illustration** - 轻小说插画风格
-4. **visual novel style** - 视觉小说CG风格
-5. **galgame art style** - 美少女游戏画风
-6. **shounen anime style** - 少年漫画风格（热血、动作）
-7. **shoujo anime style** - 少女漫画风格（唯美、浪漫）
-8. **seinen anime style** - 青年漫画风格（成熟、细腻）
-9. **kyoto animation style** - 京都动画风格（精致、柔和）
-10. **makoto shinkai style** - 新海诚风格（唯美、光影）
+**不要生成以下字段（系统会自动处理）：**
+- ❌ art_style（风格由LoRA控制）
+- ❌ color_tone（风格预设包含）
+- ❌ lighting（风格预设包含）
+
+**theme_tags 用途：**
+- 帮助系统选择合适的风格LoRA
+- 例如：["古风", "女主", "宫廷"] → 自动选择古风女主LoRA
+- 例如：["现代", "都市", "清新"] → 自动选择清新画风LoRA
 
 ## 要求
 
 1. **提取所有主要角色**：包括主角、配角
 
-2. **角色描述公式（重要！）**：
-   - **appearance**: 年龄 + 性别 + 头发颜色/长短 + 面部特征
-   - **clothing**: 衣服颜色/款式/长短 + 裤子/裙子颜色/款式 + 鞋子（如适用）
-   - 例如：
-     - appearance: "young man, black short hair, sharp eyes, calm demeanor"
-     - clothing: "simple gray robe, traditional healer attire, cloth shoes"
+2. **角色描述公式（严格固定格式）**：
+   
+   **appearance 固定公式（必须按顺序）：**
+   ```
+   [年龄段] + [性别] + [头发颜色] + [头发长短]
+   ```
+   
+   **clothing 固定公式（必须按顺序）：**
+   ```
+   [上衣颜色] + [上衣款式] + [上衣长短] + [裙子/裤子颜色] + [裙子/裤子款式] + [裙子/裤子长短] + [鞋颜色] + [鞋款式]
+   ```
+   
+   **年龄段（必选一个）：**
+   - young man/woman in his/her 20s（20多岁）
+   - middle-aged man/woman（中年）
+   - old man/woman（老年）
+   - teenage boy/girl（青少年）
+   
+   **头发颜色（必选一个）：**
+   - black hair, brown hair, blonde hair, white hair, gray hair, red hair
+   
+   **头发长短（必选一个）：**
+   - short hair, long hair, shoulder-length hair, waist-length hair
+   
+   **上衣颜色（必选一个）：**
+   - white, black, blue, red, gray, green, pink, purple, yellow
+   
+   **上衣款式（必选一个）：**
+   - shirt, t-shirt, blouse, sweater, jacket, robe, dress top
+   
+   **上衣长短（必选一个）：**
+   - short-sleeved, long-sleeved, sleeveless
+   
+   **下装颜色（必选一个）：**
+   - white, black, blue, red, gray, green, pink, purple, yellow
+   
+   **下装款式（必选一个）：**
+   - pants, jeans, skirt, dress, shorts, trousers
+   
+   **下装长短（必选一个）：**
+   - long, short, knee-length, ankle-length
+   
+   **鞋颜色（必选一个）：**
+   - black, white, brown, gray, red, blue
+   
+   **鞋款式（必选一个）：**
+   - shoes, boots, sneakers, sandals, heels, slippers
+   
+   **完整示例：**
+   - appearance: "young man in his 20s, black short hair"
+   - clothing: "white long-sleeved shirt, black long pants, black shoes"
+   
+   - appearance: "young woman in her 20s, black long hair"
+   - clothing: "pink short-sleeved blouse, blue knee-length skirt, white sneakers"
+   
+   - appearance: "middle-aged man, gray short hair"
+   - clothing: "gray long-sleeved robe, black long pants, black cloth shoes"
 
-3. **风格选择准确**：根据小说类型选择最合适的动漫风格
+3. **严格遵守公式**：
+   - ⚠️ **必须按照固定公式的顺序填写**
+   - ⚠️ **每个字段都必须填写，不能省略**
+   - ⚠️ **只能从提供的选项中选择，不要自创**
+   
+4. **英文描述**：所有内容必须英文
 
-4. **英文描述**：所有appearance、clothing、color_tone、lighting必须英文
+## 更多示例
 
-5. **详细具体**：
-   - appearance: 20-30词，包含年龄、性别、发型、面部特征
-   - clothing: 20-30词，包含上衣、下装、鞋子的颜色和款式
+**示例1 - 现代女性：**
+```json
+{
+  "name": "林默",
+  "appearance": "young woman in her 20s, black long hair",
+  "clothing": "white short-sleeved t-shirt, blue long jeans, white sneakers"
+}
+```
 
-**只输出JSON，不要解释。**
+**示例2 - 古风男性：**
+```json
+{
+  "name": "清微剑尊",
+  "appearance": "middle-aged man, white long hair",
+  "clothing": "blue long-sleeved robe, black long pants, black cloth shoes"
+}
+```
+
+**示例3 - 现代男性：**
+```json
+{
+  "name": "张昊",
+  "appearance": "young man in his 20s, black short hair",
+  "clothing": "black long-sleeved shirt, gray long pants, black shoes"
+}
+```
+
+**只输出JSON，不要解释。严格遵守固定公式！**

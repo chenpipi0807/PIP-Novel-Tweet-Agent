@@ -1,6 +1,10 @@
 """
 短剧AI生成系统 - 主控制流程
 从小说文本到完整视频的自动化生成
+
+支持两种模式：
+1. 传统模式 (Workflow) - 按固定流程执行
+2. Agent模式 (Agent) - 智能决策和质量控制
 """
 import os
 import sys
@@ -13,6 +17,10 @@ sys.path.append(str(Path(__file__).parent / "tools"))
 
 from generate_prompts import PromptGenerator
 from kimi_api import KimiAPI
+
+# Agent相关导入
+from agent import NovelToVideoAgent
+from agent_tools import AgentTools
 
 
 class VideoGenerator:
@@ -46,6 +54,19 @@ class VideoGenerator:
         print(f"✓ 项目初始化: {project_name}")
         print(f"  项目目录: {self.project_dir}")
     
+    # Agent调用的简化方法名
+    def step1_generate_audio(self, skip_if_exists=True):
+        """步骤1: 生成音频（Agent调用）"""
+        return self.step1_generate_audio_and_subtitles(skip_if_exists)
+    
+    def step3_generate_images(self, skip_if_exists=True):
+        """步骤3: 生成图像（Agent调用）"""
+        return self.step3_generate_images_batch(skip_if_exists)
+    
+    def step4_compose_video(self, skip_if_exists=True):
+        """步骤4: 合成视频（Agent调用）"""
+        return self.step4_generate_video()
+    
     def step1_generate_audio_and_subtitles(self, skip_if_exists=True):
         """
         步骤1: 生成音频和字幕文件
@@ -78,10 +99,18 @@ class VideoGenerator:
             if result and self.subtitle_file.exists():
                 print(f"✓ 字幕文件已生成: {self.subtitle_file}")
                 
-                # 读取字幕统计信息
+                # 读取字幕统计信息（兼容新旧格式）
                 with open(self.subtitle_file, 'r', encoding='utf-8') as f:
                     subtitles = json.load(f)
-                    print(f"  总句数: {subtitles.get('total_sentences', 0)}")
+                    # 新格式：parent_scenes + child_scenes
+                    if 'parent_scenes' in subtitles:
+                        total_scenes = subtitles.get('total_parent_scenes', 0)
+                        total_children = subtitles.get('total_child_scenes', 0)
+                        print(f"  父分镜（图片）: {total_scenes} 个")
+                        print(f"  子分镜（字幕）: {total_children} 个")
+                    else:
+                        # 旧格式：subtitles
+                        print(f"  总句数: {subtitles.get('total_sentences', 0)}")
                     print(f"  总时长: {subtitles.get('total_duration', 0):.2f}秒")
                 
                 return True
@@ -95,7 +124,7 @@ class VideoGenerator:
             traceback.print_exc()
             return False
     
-    def step2_generate_prompts(self, skip_if_exists=True):
+    def step2_generate_prompts(self, skip_if_exists=True, agent_mode=False):
         """
         步骤2: 生成AI绘画提示词
         调用Kimi API处理字幕文件
@@ -118,8 +147,8 @@ class VideoGenerator:
             return False
         
         try:
-            # 使用PromptGenerator
-            generator = PromptGenerator(self.project_name)
+            # 使用PromptGenerator（传递agent_mode）
+            generator = PromptGenerator(self.project_name, agent_mode=agent_mode)
             prompts = generator.generate_prompts(str(self.subtitle_file))
             
             # 保存到项目目录
@@ -184,35 +213,40 @@ class VideoGenerator:
             from diffusers import StableDiffusionXLPipeline, EulerAncestralDiscreteScheduler
             from pathlib import Path
             
-            # 加载模型
-            model_path = "sdxl/models/animagine-xl-4.0"
-            pipe = StableDiffusionXLPipeline.from_pretrained(
+            # 加载模型 - 仅使用 Prefect Illustrious XL 40
+            model_dir = Path("sdxl/models/prefectIllustriousXL_40")
+            model_path_file = model_dir / "prefectIllustriousXL_40.safetensors"
+            if not model_path_file.exists():
+                raise FileNotFoundError("未找到模型: sdxl/models/prefectIllustriousXL_40/prefectIllustriousXL_40.safetensors")
+            print("✓ 使用模型: Prefect Illustrious XL 40")
+            model_path = str(model_path_file)
+            config_path = str(model_dir)
+            
+            pipe = StableDiffusionXLPipeline.from_single_file(
                 model_path,
                 torch_dtype=torch.float16,
-                use_safetensors=True
+                config=config_path,
+                local_files_only=True
             ).to("cuda")
             
-            # 加载DMD2 LoRA（使用测试最佳配置）
+            # 加载LoRA（仅DMD2加速）
             dmd2_lora_path = Path("sdxl/models/loras/dmd2_sdxl_4step_lora.safetensors")
             use_dmd2 = False
             if dmd2_lora_path.exists():
-                # LoRA强度 0.8
                 pipe.load_lora_weights(
                     str(dmd2_lora_path.parent), 
                     weight_name=dmd2_lora_path.name,
                     adapter_name="dmd2"
                 )
                 pipe.set_adapters(["dmd2"], adapter_weights=[0.8])
-                
-                # 使用Euler Ancestral调度器（测试最佳配置）
-                pipe.scheduler = EulerAncestralDiscreteScheduler.from_config(
-                    pipe.scheduler.config
-                )
-                
                 use_dmd2 = True
-                print("✓ DMD2 LoRA加载完成（强度0.8，Euler Ancestral调度器）")
-            else:
-                print("⚠ DMD2 LoRA未找到，使用28步采样")
+                print("✓ DMD2加速LoRA已加载（权重0.8）")
+            
+            # 使用Euler Ancestral调度器（原始配置）
+            pipe.scheduler = EulerAncestralDiscreteScheduler.from_config(
+                pipe.scheduler.config
+            )
+            print("✓ 使用调度器: Euler Ancestral")
             
             pipe.enable_attention_slicing()
             pipe.enable_vae_slicing()
@@ -241,28 +275,37 @@ class VideoGenerator:
                 seed = random.randint(0, 2**32 - 1)
                 generator_obj = torch.Generator(device="cuda").manual_seed(seed)
                 
-                # 使用DMD2 LoRA（测试最佳配置）
+                # 负面词（Illustrious专用 - 更全面的质量控制）
+                negative_prompt = "lazyneg, lazyhand, child, (censored, mosaic censoring, bar_censor), lowres, text, error, cropped, worst quality, low quality, jpeg artifacts, ugly, duplicate, morbid, mutilated, out of frame, extra fingers, mutated hands, poorly drawn hands, poorly drawn face, mutation, deformed, blurry, dehydrated, bad anatomy, bad proportions, extra limbs, cloned face, disfigured, gross proportions, malformed limbs, missing arms, missing legs, extra arms, extra legs, fused fingers, too many fingers, long neck, username, watermark, signature"
+                
+                # 添加质量标签到提示词（Illustrious专用PE格式）
+                quality_tags = "score_9, score_8_up, score_7_up, masterpiece, best quality, amazing quality, absurdres, newest"
+                enhanced_prompt = f"{quality_tags}, BREAK {prompt}"
+                
+                # 使用DMD2 LoRA（原始配置）
                 if use_dmd2:
-                    # DMD2: 12步，CFG=2.5（测试最佳配置：EulerA_Normal_steps12_cfg2.5）
+                    # DMD2: 12步，CFG=2.5（原始稳定配置）
                     image = pipe(
-                        prompt=prompt,
-                        negative_prompt="low quality, blurry, distorted, bad anatomy, ugly, duplicate, mutilated, extra fingers, mutated hands, poorly drawn hands, poorly drawn face",
+                        prompt=enhanced_prompt,
+                        negative_prompt=negative_prompt,
                         num_inference_steps=12,
                         guidance_scale=2.5,
                         width=1024,
                         height=1024,
-                        generator=generator_obj
+                        generator=generator_obj,
+                        clip_skip=2
                     ).images[0]
                 else:
-                    # 标准模式: 28步
+                    # 标准模式: 20步，CFG=7.0（原始配置）
                     image = pipe(
-                        prompt=prompt,
-                        negative_prompt="low quality, blurry, distorted, bad anatomy",
-                        num_inference_steps=28,
+                        prompt=enhanced_prompt,
+                        negative_prompt=negative_prompt,
+                        num_inference_steps=20,
                         guidance_scale=7.0,
                         width=1024,
                         height=1024,
-                        generator=generator_obj
+                        generator=generator_obj,
+                        clip_skip=2
                     ).images[0]
                 
                 # 保存图像
@@ -360,6 +403,83 @@ class VideoGenerator:
         print(f"视频输出: {self.videos_dir.absolute()}")
         
         return True
+    
+    def run_with_agent(self, quality_target=0.8, task=None):
+        """
+        使用Agent模式运行
+        
+        Agent会自主决策、评估质量、优化参数
+        
+        Args:
+            quality_target: 目标质量分数 (0-1)
+            task: Task对象（用于实时更新状态）
+            
+        Returns:
+            Agent执行结果
+        """
+        print("\n" + "=" * 70)
+        print("🤖 Agent模式启动")
+        print("=" * 70)
+        print(f"目标质量: {quality_target}")
+        print("Agent将自主决策和优化生成过程...")
+        
+        start_time = datetime.now()
+        
+        try:
+            # 加载配置
+            config_path = Path("config.json")
+            if not config_path.exists():
+                print("❌ 未找到config.json，请先配置Kimi API Key")
+                return None
+            
+            with open(config_path, 'r', encoding='utf-8') as f:
+                config = json.load(f)
+            
+            kimi_api_key = config.get("kimi_api_key")
+            if not kimi_api_key or kimi_api_key == "sk-your-kimi-api-key":
+                print("❌ 请在config.json中配置有效的Kimi API Key")
+                return None
+            
+            # 创建LLM客户端
+            llm_client = KimiAPI(kimi_api_key)
+            
+            # 创建工具集
+            agent_tools = AgentTools(self)
+            agent_tools.set_llm_client(llm_client)
+            
+            # 创建Agent
+            agent = NovelToVideoAgent(
+                llm_client=llm_client,
+                tools=agent_tools.get_all_tools(),
+                task=task  # 传递task对象用于实时更新
+            )
+            
+            # 运行Agent
+            result = agent.run(
+                project_name=self.project_name,
+                novel_text=self.novel_text,
+                quality_target=quality_target
+            )
+            
+            # 完成
+            elapsed = (datetime.now() - start_time).total_seconds()
+            print("\n" + "=" * 70)
+            print("✓ Agent任务完成！")
+            print("=" * 70)
+            print(f"总耗时: {elapsed:.1f}秒 ({elapsed/60:.1f}分钟)")
+            print(f"质量分数: {result['quality_score']:.2f}")
+            print(f"尝试次数: {result['attempts']}")
+            print(f"项目目录: {self.project_dir.absolute()}")
+            if result.get('video_path'):
+                print(f"视频输出: {result['video_path']}")
+            
+            return result
+            
+        except Exception as e:
+            print(f"\n❌ Agent执行失败: {e}")
+            import traceback
+            traceback.print_exc()
+            return None
 
 
 def main():
@@ -370,6 +490,10 @@ def main():
     parser.add_argument('project_name', help='项目名称')
     parser.add_argument('--text', help='小说文本（直接输入）')
     parser.add_argument('--file', help='小说文本文件路径')
+    parser.add_argument('--mode', choices=['workflow', 'agent'], default='workflow',
+                       help='运行模式: workflow(传统流程) 或 agent(智能Agent)')
+    parser.add_argument('--quality', type=float, default=0.8,
+                       help='Agent模式的目标质量分数 (0-1)')
     
     args = parser.parse_args()
     
@@ -383,9 +507,16 @@ def main():
         print("错误: 必须提供 --text 或 --file 参数")
         return
     
-    # 创建生成器并运行
+    # 创建生成器
     generator = VideoGenerator(args.project_name, novel_text)
-    generator.run()
+    
+    # 根据模式运行
+    if args.mode == 'agent':
+        print("\n🤖 使用Agent模式")
+        generator.run_with_agent(quality_target=args.quality)
+    else:
+        print("\n📋 使用传统工作流模式")
+        generator.run()
 
 
 if __name__ == "__main__":

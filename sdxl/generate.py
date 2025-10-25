@@ -2,6 +2,11 @@
 AnimagineXL图像生成
 支持中文提示词（自动翻译）
 """
+import warnings
+# 过滤 Triton 相关警告（Windows 不支持 Triton）
+warnings.filterwarnings('ignore', message='.*Triton.*')
+warnings.filterwarnings('ignore', message='.*triton.*')
+
 import torch
 from diffusers import StableDiffusionXLPipeline
 import time

@@ -1,41 +1,90 @@
-# 📚 小说转视频 AI Agent
+# 🎬 PIP 小说推文 - AI Agent 智能视频生成系统
 
-自动将小说文本转换为带配音、字幕和运镜效果的短视频。
+> **从小说到视频，一键生成**  
+> 基于 AI Agent 的智能决策系统，自动将小说文本转换为带配音、字幕和运镜效果的短视频
 
-## ✨ 功能特点
+<img width="1398" height="908" alt="image" src="https://github.com/user-attachments/assets/8aac2d61-1c38-4ad0-8c40-7ceefd253f44" />
+<img width="1399" height="585" alt="image" src="https://github.com/user-attachments/assets/b589ff36-ff93-4438-9031-efcc577a063f" />
+<img width="1920" height="2535" alt="screencapture-localhost-5000-project-2025-10-19-23_25_40" src="https://github.com/user-attachments/assets/33ae0599-3a49-4d3d-a0a2-4303bc16fec5" />
 
-- 🎙️ **智能配音** - 使用 Edge TTS 生成自然流畅的中文配音
-- 🎨 **AI 绘图** - 基于 AnimagineXL 4.0 + DMD2 LoRA 生成高质量漫画风格图像
-- 🎬 **自动运镜** - 智能添加缩放、平移等运镜效果
-- 📝 **字幕合成** - 自动生成并嵌入时间轴精准的字幕
-- 🔄 **随机转场** - 每个视频使用不同的转场效果
-- 🌐 **Web 界面** - 简洁易用的浏览器操作界面
+## 🆕 最新更新 (v2.0)
+
+### 🤖 AI Agent 大改造
+- ✅ **智能工作流** - Agent 自动检查项目状态，智能决策下一步操作
+- ✅ **质量控制** - 自动评估生成质量，不满意自动重新生成
+- ✅ **单图重生** - 支持单独重新生成某张图片，无需重跑整个流程
+- ✅ **提示词优化** - Agent 可以自动优化提示词提升图片质量
+- ✅ **Web 界面升级** - 现代化 ReactPy UI，支持实时编辑和预览
+
+### 🎨 新增功能
+- 🖼️ **缩略图网格** - 紧凑展示所有分镜，一目了然
+- ✏️ **在线编辑** - 点击编辑按钮，弹窗修改提示词
+- 🔄 **单图重生** - 某张图不满意？直接点击重新生成
+- 📊 **项目管理** - 完整的项目列表和状态追踪
+- 🎯 **质量目标** - 设置目标质量分数，Agent 自动优化到达标
+
+## ✨ 核心特点
+
+### 🤖 AI Agent 模式
+- **自动决策** - Agent 自动分析项目状态，决定下一步操作
+- **质量驱动** - 基于质量评分自动优化，直到达到目标
+- **工具丰富** - 10+ Agent 工具，涵盖检查、生成、优化、修复
+- **智能重试** - 失败自动重试，参数自动调整
+
+### 🎨 传统工作流模式
+- **固定流程** - 按顺序执行：音频 → 提示词 → 图像 → 视频
+- **手动控制** - 每一步都可以手动干预和调整
+- **适合调试** - 方便测试和优化各个环节
+
+### 🌐 现代化 Web 界面
+- **ReactPy 构建** - 响应式单页应用
+- **实时更新** - 任务进度实时显示
+- **在线编辑** - 直接在浏览器中编辑提示词
+- **缩略图预览** - 网格布局，快速浏览所有图片
 
 ## 🎯 工作流程
+
+### Agent 模式（推荐）
+
+```
+输入小说 → Agent 自动决策 → 质量评估 → 自动优化 → 输出视频
+```
+
+**Agent 工作流程：**
+1. 📋 **检查项目状态** - 分析已完成的步骤和存在的问题
+2. 🎯 **智能决策** - 决定下一步操作（生成/优化/修复）
+3. 🎨 **执行任务** - 调用相应工具完成任务
+4. 📊 **质量评估** - 评估生成质量（0-1分）
+5. 🔄 **自动优化** - 质量不达标自动重新生成或优化
+6. ✅ **达标输出** - 质量达到目标后输出最终视频
+
+### 传统模式
 
 ```
 小说文本 → TTS配音 → AI生成提示词 → SDXL生成图像 → 视频合成
 ```
 
-### 详细步骤
+**详细步骤：**
 
 1. **TTS 生成音频和字幕**
    - 输入：小说文本
-   - 输出：`projects/{项目名}/Audio/audio.mp3` 和 `Subtitles.json`
+   - 使用：Edge TTS
+   - 输出：`Audio/audio.mp3` + `Subtitles.json`
 
 2. **AI 生成图像提示词**
-   - 使用 Kimi API 分析字幕，生成分镜脚本
-   - 输出：`projects/{项目名}/Prompts.json`
+   - 输入：字幕文件
+   - 使用：Kimi API (Moonshot)
+   - 输出：`Prompts.json`（包含每个分镜的详细提示词）
 
 3. **SDXL 生成图像**
-   - 使用 AnimagineXL 4.0 + DMD2 LoRA
-   - 输出：`projects/{项目名}/Imgs/scene_*.png`
+   - 输入：提示词文件
+   - 使用：Prefect Illustrious XL 40 + DMD2 LoRA
+   - 输出：`Imgs/scene_*.png`（1024x1024）
 
 4. **视频合成**
-   - 添加运镜效果（缩放、平移）
-   - 嵌入字幕
-   - 随机转场
-   - 输出：`projects/{项目名}/Videos/{项目名}_final.mp4`
+   - 输入：图片 + 音频 + 字幕
+   - 添加：运镜效果、转场、字幕
+   - 输出：`Videos/{项目名}_final.mp4`
 
 ## 🚀 快速开始
 
@@ -73,17 +122,15 @@ python tools/install_ffmpeg.py
 
 4. **下载模型**
 
-运行以下脚本自动下载所需模型：
+需要手动下载以下模型：
 
-```bash
-# 下载 AnimagineXL 4.0
-python download_animagine.py
+**主模型：Prefect Illustrious XL 40**
+- 下载地址：[HuggingFace](https://huggingface.co/OnomaAIResearch/Illustrious-xl-early-release-v0)
+- 保存到：`sdxl/models/prefectIllustriousXL_40/prefectIllustriousXL_40.safetensors`
 
-# 下载 DMD2 LoRA（加速生成）
-python download_dmd2.py
-```
-
-模型将保存到 `sdxl/models/` 目录。
+**加速 LoRA：DMD2**
+- 下载地址：[HuggingFace](https://huggingface.co/tianweiy/DMD2)
+- 保存到：`sdxl/models/loras/dmd2_sdxl_4step_lora.safetensors`
 
 5. **配置 API Key**
 
@@ -93,6 +140,8 @@ python download_dmd2.py
   "kimi_api_key": "sk-your-kimi-api-key"
 }
 ```
+
+获取 API Key：[Moonshot AI](https://platform.moonshot.cn/)
 
 ### 使用方法
 
@@ -104,39 +153,60 @@ python start_web.py
 
 然后在浏览器打开 `http://localhost:5000`
 
+**Web 界面功能：**
+- 📝 创建新项目（输入小说文本）
+- 🤖 选择 Agent 模式或传统模式
+- 🎯 设置质量目标（Agent 模式）
+- 📊 查看项目列表和状态
+- 🖼️ 缩略图网格预览所有分镜
+- ✏️ 在线编辑提示词
+- 🔄 单独重新生成某张图片
+- 🎬 预览最终视频
+
 #### 方式二：命令行
 
 ```bash
 python main.py
 ```
 
-按提示输入项目名称和小说文本。
+按提示输入项目名称和小说文本（仅支持传统模式）。
 
 ## 📁 项目结构
 
 ```
 PIP_Agent/
-├── main.py                 # 主程序
-├── app.py                  # Web 服务器
-├── start_web.py            # Web 启动脚本
-├── requirements.txt        # Python 依赖
-├── agent流程设计.md         # 流程设计文档
-├── PE/                     # Prompt Engineering 模板
+├── main.py                      # 主程序（传统模式）
+├── app.py                       # Flask Web 服务器
+├── react_ui.py                  # ReactPy 前端界面
+├── start_web.py                 # Web 启动脚本
+├── agent.py                     # AI Agent 核心逻辑
+├── agent_tools.py               # Agent 工具集
+├── agent_tools_single_image.py  # 单图重生工具
+├── project_inspector.py         # 项目状态检查器
+├── requirements.txt             # Python 依赖
+├── config.json                  # 配置文件（API Key）
+├── PE/                          # Prompt Engineering 模板
 │   └── novel_to_prompts_batch.txt
-├── sdxl/                   # SDXL 模型目录
+├── tools/                       # 工具模块
+│   ├── tts_generator.py         # TTS 生成
+│   ├── generate_prompts.py      # 提示词生成
+│   ├── kimi_api.py              # Kimi API 封装
+│   └── video_composer.py        # 视频合成
+├── sdxl/                        # SDXL 模型目录
 │   └── models/
-│       ├── animagine-xl-4.0/
+│       ├── prefectIllustriousXL_40/
+│       │   └── prefectIllustriousXL_40.safetensors
 │       └── loras/
 │           └── dmd2_sdxl_4step_lora.safetensors
-└── projects/               # 项目输出目录
+└── projects/                    # 项目输出目录
     └── {项目名}/
-        ├── Audio/          # 音频文件
+        ├── Audio/               # 音频文件
         │   ├── audio.mp3
         │   └── Subtitles.json
-        ├── Prompts.json    # 图像提示词
-        ├── Imgs/           # 生成的图像
+        ├── Prompts.json         # 图像提示词
+        ├── Imgs/                # 生成的图像
         │   └── scene_*.png
-        └── Videos/         # 最终视频
+        └── Videos/              # 最终视频
             └── {项目名}_final.mp4
 ```
 
@@ -144,20 +214,31 @@ PIP_Agent/
 
 ### SDXL 生成参数
 
-当前使用的最佳配置（经过测试优化）：
+当前使用的配置：
 
 ```python
-模型: AnimagineXL 4.0
+模型: Prefect Illustrious XL 40
 LoRA: DMD2 (强度 0.8)
-采样器: Euler Ancestral
-步数: 12
-CFG Scale: 2.5
+调度器: Euler Ancestral
+步数: 12 (DMD2) / 20 (标准)
+CFG Scale: 2.5 (DMD2) / 7.0 (标准)
 分辨率: 1024x1024
+Clip Skip: 2
+```
+
+**质量标签（Illustrious 专用）：**
+```
+score_9, score_8_up, score_7_up, masterpiece, best quality, amazing quality, absurdres, newest
+```
+
+**负面提示词：**
+```
+lazyneg, lazyhand, child, censored, lowres, worst quality, low quality, bad anatomy, ...
 ```
 
 **性能：**
-- 单张图片：~13 秒
-- 100 张图片：~22 分钟
+- 单张图片：~10-15 秒（DMD2 加速）
+- 100 张图片：~15-25 分钟
 
 ### 提示词格式
 
@@ -182,21 +263,47 @@ manga style, a healer waiting for a visitor at clinic entrance, medium shot, {�
 - **帧率**：24 FPS
 - **音频**：AAC 128kbps
 
-## 🔧 高级功能
+## 🔧 Agent 工具集
 
-### 参数测试
+Agent 拥有以下工具来完成任务：
 
-使用测试脚本找到最佳生成参数：
+### 核心工作流工具
+- `inspect_and_continue` - 🆕 检查项目状态并自动继续（推荐）
+- `inspect_project` - 检查项目状态
+- `generate_audio` - 生成音频和字幕
+- `generate_prompts` - 生成图像提示词
+- `generate_images` - 生成所有分镜图像
+- `compose_video` - 合成最终视频
+- `evaluate_quality` - 评估生成质量
 
-```bash
-python test_dmd2_params.py
-```
+### 图像处理工具
+- `regenerate_scene` - 🆕 重新生成单个场景
+- `regenerate_scenes_batch` - 🆕 批量重新生成多个场景
 
-测试不同的采样器、步数、CFG 组合，结果保存到 `temp/` 目录。
+### 提示词处理工具
+- `refine_prompts` - 🆕 自动优化提示词
+- `validate_prompts` - 🆕 验证提示词质量
+
+### 质量控制工具
+- `check_image_quality` - 🆕 检查图像质量
+- `auto_fix_issues` - 🆕 自动修复问题
+
+### 参数调整工具
+- `adjust_parameters` - 根据质量评估调整生成参数
+
+## 🎨 高级功能
 
 ### 自定义 Prompt 模板
 
 编辑 `PE/novel_to_prompts_batch.txt` 来自定义提示词生成规则。
+
+### 质量目标设置
+
+在 Agent 模式下，可以设置质量目标（0.0-1.0）：
+- `0.6` - 基本可用
+- `0.7` - 良好质量（推荐）
+- `0.8` - 高质量
+- `0.9+` - 极致质量（可能需要多次优化）
 
 ## 📊 性能优化
 
@@ -222,14 +329,29 @@ python test_dmd2_params.py
 ### Q: 视频合成失败
 **A:** 确保安装了 FFmpeg 并添加到系统 PATH
 
-## 📝 TODO
+## 📝 开发路线
 
+### 已完成 ✅
+- [x] AI Agent 智能决策系统
+- [x] 质量评估和自动优化
+- [x] 单图重生功能
+- [x] Web 界面升级（ReactPy）
+- [x] 项目状态检查器
+- [x] 在线编辑提示词
+- [x] 缩略图网格预览
+
+### 进行中 🚧
+- [ ] 优化 SDXL 图像生成质量
+- [ ] 改进提示词生成算法
+- [ ] 增强 Agent 决策能力
+
+### 计划中 📋
+- [ ] 支持更多图像模型（Flux、SDXL Turbo）
 - [ ] 支持更多 TTS 引擎（Azure TTS、OpenAI TTS）
-- [ ] 支持更多图像模型（Flux、SD3）
 - [ ] 添加角色表情控制
 - [ ] 支持多角色对话场景
-- [ ] 优化长视频生成性能
-- [ ] 添加视频预览功能
+- [ ] 视频效果模板库
+- [ ] 批量项目管理
 
 ## 🤝 贡献
 
@@ -241,14 +363,41 @@ MIT License
 
 ## 🙏 致谢
 
-- [AnimagineXL](https://huggingface.co/cagliostrolab/animagine-xl-4.0) - 高质量动漫风格图像生成
+- [Illustrious XL](https://huggingface.co/OnomaAIResearch/Illustrious-xl-early-release-v0) - 高质量动漫风格图像生成
 - [DMD2](https://huggingface.co/tianweiy/DMD2) - 快速采样加速
-- [Index TTS](https://github.com/index-tts/index-tts) - 免费高质量 TTS
+- [Moonshot AI (Kimi)](https://www.moonshot.cn/) - 强大的 LLM API
+- [Edge TTS](https://github.com/rany2/edge-tts) - 免费高质量 TTS
 - [Diffusers](https://github.com/huggingface/diffusers) - Stable Diffusion 推理库
+- [ReactPy](https://reactpy.dev/) - Python Web 框架
+
+## 📊 项目统计
+
+- **代码行数**：~5000+ 行
+- **Agent 工具**：15+ 个
+- **支持的模型**：SDXL 系列
+- **生成速度**：~10-15 秒/张（DMD2 加速）
 
 ## 📧 联系方式
 
-如有问题或建议，请提交 Issue。
+- **GitHub Issues**：[提交问题](https://github.com/chenpipi0807/PIP-Novel-Tweet-Agent/issues)
+- **项目主页**：[PIP-Novel-Tweet-Agent](https://github.com/chenpipi0807/PIP-Novel-Tweet-Agent)
+
+## 📜 更新日志
+
+### v2.0 (2025-10-25)
+- 🤖 重构为 AI Agent 架构
+- ✨ 新增 10+ Agent 工具
+- 🎨 Web 界面全面升级
+- 🔄 支持单图重生
+- ✏️ 在线编辑提示词
+- 📊 项目状态检查器
+
+### v1.0 (2025-10-19)
+- 🎉 初始版本发布
+- 🎙️ TTS 音频生成
+- 🎨 SDXL 图像生成
+- 🎬 视频合成
+- 🌐 基础 Web 界面
 
 ---
 

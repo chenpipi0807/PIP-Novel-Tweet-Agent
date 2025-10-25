@@ -27,6 +27,7 @@ class KimiAPI:
             raise ValueError("未找到API密钥")
         
         self.base_url = "https://api.moonshot.cn/v1"
+        self.model = "moonshot-v1-auto"  # 使用 auto 自动选择最佳模型（包括k2）
         self.headers = {
             "Authorization": f"Bearer {self.api_key}",
             "Content-Type": "application/json"
@@ -41,7 +42,7 @@ class KimiAPI:
                 f"{self.base_url}/chat/completions",
                 headers=self.headers,
                 json={
-                    "model": "moonshot-v1-8k",
+                    "model": self.model,
                     "messages": [
                         {"role": "user", "content": "你好"}
                     ],
@@ -61,13 +62,14 @@ class KimiAPI:
             print(f"❌ API连接失败: {e}")
             return False
     
-    def chat(self, messages, model="moonshot-v1-128k", temperature=0.3, stream=False, max_tokens=None):
+    def chat(self, messages, model=None, temperature=0.3, stream=False, max_tokens=None):
         """
         调用Kimi聊天API
         
         Args:
             messages: 消息列表 [{"role": "user", "content": "..."}]
-            model: 模型名称
+            model: 模型名称（None则使用默认的auto模型）
+                - moonshot-v1-auto: 自动选择最佳模型（推荐，包括k2）
                 - moonshot-v1-8k: 8k上下文
                 - moonshot-v1-32k: 32k上下文
                 - moonshot-v1-128k: 128k上下文（超长文本）
@@ -79,6 +81,10 @@ class KimiAPI:
             str: AI回复内容
         """
         try:
+            # 如果没指定模型，使用默认的auto模型
+            if model is None:
+                model = self.model
+            
             payload = {
                 "model": model,
                 "messages": messages,

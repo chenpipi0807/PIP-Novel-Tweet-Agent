@@ -21,7 +21,7 @@ logger = logging.getLogger(__name__)
 class NovelToDrama:
     """小说转短剧工具"""
     
-    def __init__(self, timbre_name: str = "播音中年男"):
+    def __init__(self, timbre_name: str = "抖音-读小说"):
         """
         初始化
         
@@ -72,8 +72,21 @@ class NovelToDrama:
                     else:
                         result.append(sentence)
         
-        # 过滤空句子
-        result = [s for s in result if s and len(s) > 1]
+        # 过滤空句子和无效内容
+        def is_valid_sentence(s):
+            """判断是否为有效句子"""
+            if not s or len(s) <= 1:
+                return False
+            # 移除引号和空格后检查
+            cleaned = s.strip('"\'""''「」『』【】《》 \t')
+            if not cleaned or len(cleaned) <= 1:
+                return False
+            # 只包含标点符号的不要
+            if all(c in '，。！？,.:;!?、""''"\'「」『』【】《》—…·' for c in cleaned):
+                return False
+            return True
+        
+        result = [s for s in result if is_valid_sentence(s)]
         
         logger.info(f"✓ 文本拆分完成: {len(result)} 句")
         return result
@@ -317,7 +330,7 @@ def main():
     parser = argparse.ArgumentParser(description='小说转短剧工具')
     parser.add_argument('--input', '-i', required=True, help='输入文本文件路径')
     parser.add_argument('--project', '-p', required=True, help='项目名称')
-    parser.add_argument('--timbre', '-t', default='播音中年男', help='音色名称')
+    parser.add_argument('--timbre', '-t', default='抖音-读小说', help='音色名称')
     parser.add_argument('--max-length', '-m', type=int, default=50, help='单句最大长度')
     parser.add_argument('--list-timbres', action='store_true', help='列出可用音色')
     

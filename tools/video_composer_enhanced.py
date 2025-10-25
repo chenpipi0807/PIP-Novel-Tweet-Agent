@@ -8,80 +8,38 @@ import random
 from pathlib import Path
 
 
-# Ken Burns运镜效果配置
+# Ken Burns运镜效果配置（扩展版）
 CAMERA_EFFECTS = [
-    {
-        "name": "zoom_in",
-        "scale_start": "1.0",
-        "scale_end": "1.2",
-        "x_start": "0",
-        "x_end": "0",
-        "y_start": "0",
-        "y_end": "0"
-    },
-    {
-        "name": "zoom_out",
-        "scale_start": "1.2",
-        "scale_end": "1.0",
-        "x_start": "0",
-        "x_end": "0",
-        "y_start": "0",
-        "y_end": "0"
-    },
-    {
-        "name": "pan_right",
-        "scale_start": "1.1",
-        "scale_end": "1.1",
-        "x_start": "-50",
-        "x_end": "50",
-        "y_start": "0",
-        "y_end": "0"
-    },
-    {
-        "name": "pan_left",
-        "scale_start": "1.1",
-        "scale_end": "1.1",
-        "x_start": "50",
-        "x_end": "-50",
-        "y_start": "0",
-        "y_end": "0"
-    },
-    {
-        "name": "pan_up",
-        "scale_start": "1.1",
-        "scale_end": "1.1",
-        "x_start": "0",
-        "x_end": "0",
-        "y_start": "50",
-        "y_end": "-50"
-    },
-    {
-        "name": "pan_down",
-        "scale_start": "1.1",
-        "scale_end": "1.1",
-        "x_start": "0",
-        "x_end": "0",
-        "y_start": "-50",
-        "y_end": "50"
-    },
-    {
-        "name": "zoom_in_up",
-        "scale_start": "1.0",
-        "scale_end": "1.15",
-        "x_start": "0",
-        "x_end": "0",
-        "y_start": "30",
-        "y_end": "-30"
-    },
-    {
-        "name": "zoom_out_down",
-        "scale_start": "1.15",
-        "scale_end": "1.0",
-        "x_start": "0",
-        "x_end": "0",
-        "y_start": "-30",
-        "y_end": "30"
-    }
+    # 基础缩放
+    {"name": "zoom_in", "scale_start": "1.0", "scale_end": "1.2", "x_start": "0", "x_end": "0", "y_start": "0", "y_end": "0"},
+    {"name": "zoom_out", "scale_start": "1.2", "scale_end": "1.0", "x_start": "0", "x_end": "0", "y_start": "0", "y_end": "0"},
+    {"name": "zoom_in_slow", "scale_start": "1.0", "scale_end": "1.15", "x_start": "0", "x_end": "0", "y_start": "0", "y_end": "0"},
+    {"name": "zoom_out_slow", "scale_start": "1.15", "scale_end": "1.0", "x_start": "0", "x_end": "0", "y_start": "0", "y_end": "0"},
+    
+    # 平移
+    {"name": "pan_right", "scale_start": "1.1", "scale_end": "1.1", "x_start": "-50", "x_end": "50", "y_start": "0", "y_end": "0"},
+    {"name": "pan_left", "scale_start": "1.1", "scale_end": "1.1", "x_start": "50", "x_end": "-50", "y_start": "0", "y_end": "0"},
+    {"name": "pan_up", "scale_start": "1.1", "scale_end": "1.1", "x_start": "0", "x_end": "0", "y_start": "50", "y_end": "-50"},
+    {"name": "pan_down", "scale_start": "1.1", "scale_end": "1.1", "x_start": "0", "x_end": "0", "y_start": "-50", "y_end": "50"},
+    
+    # 对角线移动
+    {"name": "pan_right_up", "scale_start": "1.1", "scale_end": "1.1", "x_start": "-40", "x_end": "40", "y_start": "40", "y_end": "-40"},
+    {"name": "pan_right_down", "scale_start": "1.1", "scale_end": "1.1", "x_start": "-40", "x_end": "40", "y_start": "-40", "y_end": "40"},
+    {"name": "pan_left_up", "scale_start": "1.1", "scale_end": "1.1", "x_start": "40", "x_end": "-40", "y_start": "40", "y_end": "-40"},
+    {"name": "pan_left_down", "scale_start": "1.1", "scale_end": "1.1", "x_start": "40", "x_end": "-40", "y_start": "-40", "y_end": "40"},
+    
+    # 缩放+移动组合
+    {"name": "zoom_in_up", "scale_start": "1.0", "scale_end": "1.15", "x_start": "0", "x_end": "0", "y_start": "30", "y_end": "-30"},
+    {"name": "zoom_in_down", "scale_start": "1.0", "scale_end": "1.15", "x_start": "0", "x_end": "0", "y_start": "-30", "y_end": "30"},
+    {"name": "zoom_in_left", "scale_start": "1.0", "scale_end": "1.15", "x_start": "30", "x_end": "-30", "y_start": "0", "y_end": "0"},
+    {"name": "zoom_in_right", "scale_start": "1.0", "scale_end": "1.15", "x_start": "-30", "x_end": "30", "y_start": "0", "y_end": "0"},
+    {"name": "zoom_out_up", "scale_start": "1.15", "scale_end": "1.0", "x_start": "0", "x_end": "0", "y_start": "30", "y_end": "-30"},
+    {"name": "zoom_out_down", "scale_start": "1.15", "scale_end": "1.0", "x_start": "0", "x_end": "0", "y_start": "-30", "y_end": "30"},
+    {"name": "zoom_out_left", "scale_start": "1.15", "scale_end": "1.0", "x_start": "30", "x_end": "-30", "y_start": "0", "y_end": "0"},
+    {"name": "zoom_out_right", "scale_start": "1.15", "scale_end": "1.0", "x_start": "-30", "x_end": "30", "y_start": "0", "y_end": "0"},
+    
+    # 静止（第一张图使用）
+    {"name": "static", "scale_start": "1.0", "scale_end": "1.0", "x_start": "0", "x_end": "0", "y_start": "0", "y_end": "0"},
 ]
 
 
@@ -90,9 +48,9 @@ def random_camera_effect():
     return random.choice(CAMERA_EFFECTS)
 
 
-def split_subtitle_lines(text, max_chars_per_line=20):
+def split_subtitle_lines(text, max_chars_per_line=22):
     """
-    智能分割字幕为多行
+    智能分割字幕为多行（平均分配）
     
     Args:
         text: 字幕文本
@@ -105,25 +63,46 @@ def split_subtitle_lines(text, max_chars_per_line=20):
     if len(text) <= max_chars_per_line:
         return [text]
     
+    # 计算需要的行数
+    total_len = len(text)
+    num_lines = (total_len + max_chars_per_line - 1) // max_chars_per_line
+    avg_len = total_len // num_lines
+    
+    # 按逗号分割成句子
+    punctuations = ['，', '。', '！', '？', '、', '；', '：', ',', '.', '!', '?', ';', ':']
+    segments = []
+    current_seg = ""
+    
+    for char in text:
+        current_seg += char
+        if char in punctuations:
+            segments.append(current_seg)
+            current_seg = ""
+    
+    if current_seg:
+        segments.append(current_seg)
+    
+    # 如果没有标点符号，按字符平均分割
+    if len(segments) <= 1:
+        lines = []
+        for i in range(0, total_len, avg_len):
+            lines.append(text[i:i+avg_len])
+        return lines
+    
+    # 将句子组合成行，尽量平均分配
     lines = []
     current_line = ""
     
-    # 按标点符号分割
-    for char in text:
-        current_line += char
-        
-        # 如果当前行达到最大长度，或遇到标点符号，考虑换行
-        if len(current_line) >= max_chars_per_line:
-            # 在标点符号处换行
-            if char in ['，', '。', '！', '？', '、', '；', '：', ',', '.', '!', '?', ';', ':']:
+    for seg in segments:
+        # 如果加上这个句子不超过目标长度，就加上
+        if len(current_line) + len(seg) <= avg_len + 5:
+            current_line += seg
+        else:
+            # 否则开始新行
+            if current_line:
                 lines.append(current_line)
-                current_line = ""
-            # 如果超过最大长度，强制换行
-            elif len(current_line) > max_chars_per_line + 5:
-                lines.append(current_line)
-                current_line = ""
+            current_line = seg
     
-    # 添加剩余文本
     if current_line:
         lines.append(current_line)
     
@@ -156,8 +135,8 @@ def create_video_with_effects(img_path, audio_path, output_path, duration, subti
         f"fps={fps}"
     )
     
-    # 智能分割字幕为多行
-    subtitle_lines = split_subtitle_lines(subtitle_text, max_chars_per_line=20)
+    # 智能分割字幕为多行（平均分配，每行最多22字）
+    subtitle_lines = split_subtitle_lines(subtitle_text, max_chars_per_line=22)
     
     # 根据行数调整字体大小和位置
     num_lines = len(subtitle_lines)
@@ -245,7 +224,10 @@ def create_video_with_effects(img_path, audio_path, output_path, duration, subti
 
 def compose_video(project_dir, subtitle_file, imgs_dir, audio_dir, output_dir):
     """
-    合成带运镜和字幕的视频
+    合成带运镜和字幕的视频（支持父子分镜结构）
+    
+    父分镜：对应图片，播放时长 = 所有子分镜时长之和
+    子分镜：对应TTS音频和字幕
     
     Args:
         project_dir: 项目目录
@@ -261,10 +243,33 @@ def compose_video(project_dir, subtitle_file, imgs_dir, audio_dir, output_dir):
     with open(subtitle_file, 'r', encoding='utf-8') as f:
         subtitles_data = json.load(f)
     
-    subtitles = subtitles_data['subtitles']
     total_duration = subtitles_data['total_duration']
     
-    print(f"总句数: {len(subtitles)}")
+    # 判断是新格式还是旧格式
+    if 'parent_scenes' in subtitles_data:
+        # 新格式：父子分镜结构
+        parent_scenes = subtitles_data['parent_scenes']
+        print(f"父分镜（图片）: {len(parent_scenes)} 个")
+        print(f"子分镜（字幕）: {subtitles_data.get('total_child_scenes', 0)} 个")
+    else:
+        # 旧格式：兼容处理
+        subtitles = subtitles_data.get('subtitles', [])
+        print(f"总句数: {len(subtitles)}")
+        # 转换为父子格式
+        parent_scenes = []
+        for sub in subtitles:
+            parent_scenes.append({
+                'parent_index': sub['index'],
+                'text': sub['text'],
+                'duration': sub['duration'],
+                'children': [{
+                    'child_index': sub['index'],
+                    'text': sub['text'],
+                    'filename': sub['filename'],
+                    'duration': sub['duration']
+                }]
+            })
+    
     print(f"总时长: {total_duration:.2f}秒")
     
     imgs_path = Path(imgs_dir)
@@ -275,48 +280,103 @@ def compose_video(project_dir, subtitle_file, imgs_dir, audio_dir, output_dir):
     temp_dir = output_path / "temp"
     temp_dir.mkdir(exist_ok=True)
     
-    # 生成每个片段
+    # 生成每个父分镜的视频片段
     segment_files = []
     
-    print("\n生成视频片段（带运镜和字幕）...")
-    for i, subtitle in enumerate(subtitles, 1):
-        index = subtitle['index']
-        duration = subtitle['duration']
-        text = subtitle['text']
+    print("\n生成视频片段（父子分镜结构）...")
+    for i, parent_scene in enumerate(parent_scenes, 1):
+        parent_index = parent_scene['parent_index']
+        parent_text = parent_scene['text']
+        children = parent_scene['children']
+        parent_duration = parent_scene['duration']
         
-        # 图片和音频路径
-        img_file = imgs_path / f"scene_{index:04d}.png"
-        audio_file = audio_path / subtitle['filename']
+        print(f"\n[{i}/{len(parent_scenes)}] 父分镜 {parent_index}")
+        print(f"  文本: {parent_text[:60]}...")
+        print(f"  子分镜数: {len(children)}")
+        print(f"  总时长: {parent_duration:.2f}秒")
         
-        if not img_file.exists() or not audio_file.exists():
-            print(f"⚠ [{i}/{len(subtitles)}] 文件缺失，跳过")
+        # 图片路径
+        img_file = imgs_path / f"scene_{parent_index:04d}.png"
+        
+        if not img_file.exists():
+            print(f"  ⚠ 图片缺失，跳过")
             continue
         
-        # 随机选择运镜效果
-        effect = random_camera_effect()
+        # 第一张图使用静止效果，其他随机选择
+        if i == 1:
+            effect = {"name": "static", "scale_start": "1.0", "scale_end": "1.0", "x_start": "0", "x_end": "0", "y_start": "0", "y_end": "0"}
+        else:
+            effect = random_camera_effect()
         
-        # 输出片段
-        segment_file = temp_dir / f"segment_{index:04d}.mp4"
+        print(f"  运镜: {effect['name']}")
         
-        print(f"[{i}/{len(subtitles)}] 生成片段 {index} - 运镜: {effect['name']}")
-        print(f"  字幕: {text}")
+        # 为每个子分镜生成带字幕的视频片段
+        child_segments = []
         
-        try:
-            create_video_with_effects(
-                img_path=img_file,
-                audio_path=audio_file,
-                output_path=segment_file,
-                duration=duration,
-                subtitle_text=text,
-                effect=effect
-            )
+        for j, child in enumerate(children, 1):
+            child_index = child['child_index']
+            child_text = child['text']
+            child_duration = child['duration']
+            audio_file = audio_path / child['filename']
             
-            segment_files.append(segment_file)
-            print(f"  ✓ 完成")
+            if not audio_file.exists():
+                print(f"    ⚠ 子分镜 {j} 音频缺失，跳过")
+                continue
             
-        except Exception as e:
-            print(f"  ❌ 失败: {e}")
-            continue
+            # 输出子片段
+            child_segment_file = temp_dir / f"segment_{parent_index:04d}_{j:02d}.mp4"
+            
+            print(f"    [{j}/{len(children)}] 子分镜: {child_text[:40]}... ({child_duration:.2f}秒)")
+            
+            try:
+                create_video_with_effects(
+                    img_path=img_file,  # 使用父分镜的图片
+                    audio_path=audio_file,
+                    output_path=child_segment_file,
+                    duration=child_duration,
+                    subtitle_text=child_text,
+                    effect=effect  # 所有子分镜使用相同的运镜效果
+                )
+                
+                child_segments.append(child_segment_file)
+                print(f"        ✓ 完成")
+                
+            except Exception as e:
+                print(f"        ❌ 失败: {e}")
+                continue
+        
+        # 如果有子片段，合并它们
+        if child_segments:
+            if len(child_segments) == 1:
+                # 只有一个子片段，直接使用
+                segment_files.append(child_segments[0])
+            else:
+                # 多个子片段，需要合并
+                merged_segment = temp_dir / f"segment_{parent_index:04d}_merged.mp4"
+                concat_file = temp_dir / f"concat_{parent_index:04d}.txt"
+                
+                with open(concat_file, 'w', encoding='utf-8') as f:
+                    for seg in child_segments:
+                        f.write(f"file '{seg.absolute()}'\n")
+                
+                subprocess.run([
+                    'ffmpeg', '-y',
+                    '-f', 'concat', '-safe', '0',
+                    '-i', str(concat_file),
+                    '-c', 'copy',
+                    str(merged_segment)
+                ], check=True, capture_output=True)
+                
+                segment_files.append(merged_segment)
+                
+                # 清理子片段
+                for seg in child_segments:
+                    seg.unlink()
+                concat_file.unlink()
+            
+            print(f"  ✓ 父分镜 {parent_index} 完成")
+        else:
+            print(f"  ❌ 父分镜 {parent_index} 没有有效的子片段")
     
     if not segment_files:
         print("❌ 没有生成任何视频片段")
